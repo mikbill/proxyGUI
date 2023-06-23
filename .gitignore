@@ -1,0 +1,16 @@
+/.idea
+/.vscode
+/.scribe
+.env
+.env.backup
+.phpunit.result.cache
+/node_modules
+/public/hot
+/public/storage
+/storage/*.key
+/storage/logs
+/vendor
+_ide_helper.php
+_ide_helper_models.php
+composer.lock
+package-lock.json

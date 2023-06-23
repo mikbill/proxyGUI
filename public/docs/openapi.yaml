@@ -1,0 +1,120 @@
+openapi: 3.0.3
+info:
+  title: 'Mikbill ProxyGUI Docs'
+  description: ''
+  version: 1.0.0
+servers:
+  -
+    url: 'https://proxy.nekkoy.pp.ua'
+paths:
+  /api/user:
+    get:
+      summary: ''
+      description: ''
+      parameters:
+        -
+          in: header
+          name: Content-Type
+          description: ''
+          example: application/json
+          schema:
+            type: string
+        -
+          in: header
+          name: Accept
+          description: ''
+          example: application/json
+          schema:
+            type: string
+      responses:
+        401:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  message: Unauthenticated.
+                properties:
+                  message:
+                    type: string
+                    example: Unauthenticated.
+      tags:
+        - Endpoints
+      security: []
+  /api/v1/auth:
+    post:
+      summary: ''
+      description: ''
+      parameters:
+        -
+          in: header
+          name: Content-Type
+          description: ''
+          example: application/json
+          schema:
+            type: string
+        -
+          in: header
+          name: Accept
+          description: ''
+          example: application/json
+          schema:
+            type: string
+      responses:
+        200:
+          description: success
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  access_token: 'JWT TOKEN'
+                properties:
+                  access_token:
+                    type: string
+                    example: 'JWT TOKEN'
+        404:
+          description: 'Invalid credentials'
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  error: 1
+                  message: 'Invalid credentials'
+                properties:
+                  error:
+                    type: integer
+                    example: 1
+                  message:
+                    type: string
+                    example: 'Invalid credentials'
+      tags:
+        - Авторизация
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                  description: 'Имя пользователя.'
+                  example: admin
+                password:
+                  type: string
+                  description: пароль.
+                  example: officia
+              required:
+                - name
+                - password
+      security: []
+tags:
+  -
+    name: Endpoints
+    description: ''
+  -
+    name: Авторизация
+    description: 'APIs for managing users'

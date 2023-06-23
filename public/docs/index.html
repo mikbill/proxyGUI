@@ -1,0 +1,1095 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <title>Mikbill ProxyGUI Docs</title>
+
+    <link href="https://fonts.googleapis.com/css?family=PT+Sans&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="../docs/css/theme-default.style.css" media="screen">
+    <link rel="stylesheet" href="../docs/css/theme-default.print.css" media="print">
+
+    <script src="https://cdn.jsdelivr.net/npm/lodash@4.17.10/lodash.min.js"></script>
+
+    <link rel="stylesheet"
+          href="https://unpkg.com/@highlightjs/cdn-assets@10.7.2/styles/obsidian.min.css">
+    <script src="https://unpkg.com/@highlightjs/cdn-assets@10.7.2/highlight.min.js"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jets/0.14.1/jets.min.js"></script>
+
+    <style id="language-style">
+        /* starts out as display none and is replaced with js later  */
+                    body .content .bash-example code { display: none; }
+                    body .content .javascript-example code { display: none; }
+            </style>
+
+
+    <script src="../docs/js/theme-default-3.37.2.js"></script>
+
+</head>
+
+<body data-languages="[&quot;bash&quot;,&quot;javascript&quot;]">
+
+<a href="#" id="nav-button">
+    <span>
+        MENU
+        <img src="../docs/images/navbar.png" alt="navbar-image" />
+    </span>
+</a>
+<div class="tocify-wrapper">
+    
+            <div class="lang-selector">
+                                            <button type="button" class="lang-button" data-language-name="bash">bash</button>
+                                            <button type="button" class="lang-button" data-language-name="javascript">javascript</button>
+                    </div>
+    
+    <div class="search">
+        <input type="text" class="search" id="input-search" placeholder="Search">
+    </div>
+
+    <div id="toc">
+                                                                            <ul id="tocify-header-0" class="tocify-header">
+                    <li class="tocify-item level-1" data-unique="introduction">
+                        <a href="#introduction">Introduction</a>
+                    </li>
+                                            
+                                                                    </ul>
+                                                <ul id="tocify-header-1" class="tocify-header">
+                    <li class="tocify-item level-1" data-unique="authenticating-requests">
+                        <a href="#authenticating-requests">Authenticating requests</a>
+                    </li>
+                                            
+                                                </ul>
+                    
+                    <ul id="tocify-header-2" class="tocify-header">
+                <li class="tocify-item level-1" data-unique="auth">
+                    <a href="#auth">Auth</a>
+                </li>
+                                    <ul id="tocify-subheader-auth" class="tocify-subheader">
+                                                    <li class="tocify-item level-2" data-unique="auth-POSTapi-v1-auth">
+                        <a href="#auth-POSTapi-v1-auth">POST api/v1/auth</a>
+                    </li>
+                                                    </ul>
+                            </ul>
+                    <ul id="tocify-header-3" class="tocify-header">
+                <li class="tocify-item level-1" data-unique="profile">
+                    <a href="#profile">Profile</a>
+                </li>
+                                    <ul id="tocify-subheader-profile" class="tocify-subheader">
+                                                    <li class="tocify-item level-2" data-unique="profile-GETapi-v1-user">
+                        <a href="#profile-GETapi-v1-user">Свойства пользователя</a>
+                    </li>
+                                                    </ul>
+                            </ul>
+                    <ul id="tocify-header-4" class="tocify-header">
+                <li class="tocify-item level-1" data-unique="proxy-requests">
+                    <a href="#proxy-requests">Proxy Requests</a>
+                </li>
+                                    <ul id="tocify-subheader-proxy-requests" class="tocify-subheader">
+                                                    <li class="tocify-item level-2" data-unique="proxy-requests-GETapi-v1-proxy-requests">
+                        <a href="#proxy-requests-GETapi-v1-proxy-requests">Список прокси запросов</a>
+                    </li>
+                                    <li class="tocify-item level-2" data-unique="proxy-requests-GETapi-v1-proxy-requests--id-">
+                        <a href="#proxy-requests-GETapi-v1-proxy-requests--id-">Свойства прокси запроса</a>
+                    </li>
+                                                    </ul>
+                            </ul>
+                    <ul id="tocify-header-5" class="tocify-header">
+                <li class="tocify-item level-1" data-unique="proxy-users">
+                    <a href="#proxy-users">Proxy Users</a>
+                </li>
+                                    <ul id="tocify-subheader-proxy-users" class="tocify-subheader">
+                                                    <li class="tocify-item level-2" data-unique="proxy-users-GETapi-v1-proxy-users">
+                        <a href="#proxy-users-GETapi-v1-proxy-users">Список пользователей прокси</a>
+                    </li>
+                                    <li class="tocify-item level-2" data-unique="proxy-users-GETapi-v1-proxy-users--id-">
+                        <a href="#proxy-users-GETapi-v1-proxy-users--id-">Свойства пользователя прокси</a>
+                    </li>
+                                    <li class="tocify-item level-2" data-unique="proxy-users-PATCHapi-v1-proxy-users--id-">
+                        <a href="#proxy-users-PATCHapi-v1-proxy-users--id-">Изменить прокси пользователя</a>
+                    </li>
+                                    <li class="tocify-item level-2" data-unique="proxy-users-POSTapi-v1-proxy-users">
+                        <a href="#proxy-users-POSTapi-v1-proxy-users">Создать прокси пользователя</a>
+                    </li>
+                                                    </ul>
+                            </ul>
+        
+                        
+            </div>
+
+            <ul class="toc-footer" id="toc-footer">
+                            <li><a href="http://github.com/knuckleswtf/scribe">Documentation powered by Scribe ✍</a></li>
+                    </ul>
+        <ul class="toc-footer" id="last-updated">
+        <li>Last updated: June 23 2023</li>
+    </ul>
+</div>
+
+<div class="page-wrapper">
+    <div class="dark-box"></div>
+    <div class="content">
+        <h1 id="introduction">Introduction</h1>
+<p>Документация API для работы с ProxyGUI.</p>
+<aside>В правой части можно увидеть примеры API запросов на разных языках (переключение языка доступно в верхней части)</aside>
+<blockquote>
+<p>Base URL</p>
+</blockquote>
+<pre><code class="language-yaml">https://proxy.nekkoy.pp.ua</code></pre>
+
+        <h1 id="authenticating-requests">Authenticating requests</h1>
+<p>This API is not authenticated.</p>
+
+        <h1 id="auth">Auth</h1>
+
+    <p>Получение JWT токена для дальнейшей работы с API</p>
+
+            <h2 id="auth-POSTapi-v1-auth">POST api/v1/auth</h2>
+
+<p>
+</p>
+
+
+
+<span id="example-requests-POSTapi-v1-auth">
+<blockquote>Example request:</blockquote>
+
+
+<div class="bash-example">
+    <pre><code class="language-bash">curl --request POST \
+    "https://proxy.nekkoy.pp.ua/api/v1/auth" \
+    --header "Content-Type: application/json" \
+    --header "Accept: application/json" \
+    --data "{
+    \"name\": \"admin\",
+    \"password\": \"et\"
+}"
+</code></pre></div>
+
+
+<div class="javascript-example">
+    <pre><code class="language-javascript">const url = new URL(
+    "https://proxy.nekkoy.pp.ua/api/v1/auth"
+);
+
+const headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+let body = {
+    "name": "admin",
+    "password": "et"
+};
+
+fetch(url, {
+    method: "POST",
+    headers,
+    body: JSON.stringify(body),
+}).then(response =&gt; response.json());</code></pre></div>
+
+</span>
+
+<span id="example-responses-POSTapi-v1-auth">
+            <blockquote>
+            <p>Example response (200, success):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json">{
+    &quot;access_token&quot;: &quot;eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9sb2NhbGhvc3Q6ODAwMFwvYXBpXC92MVwvYXV0aCIsImlhdCI6MTY4NzUxODM3OCwiZXhwIjoxNjg3NTIxOTc4LCJuYmYiOjE2ODc1MTgzNzgsImp0aSI6ImE1djByWTdwTGQ2aU1QVkgiLCJzdWIiOjEsInBydiI6IjIzYmQ1Yzg5NDlmNjAwYWRiMzllNzAxYzQwMDg3MmRiN2E1OTc2ZjcifQ.HBxradYbt2jd-nNjdS9RJ_6YXXdYJAuN99DXQ3zApMw&quot;
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (404, Invalid credentials):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json">{
+    &quot;error&quot;: 1,
+    &quot;message&quot;: &quot;Invalid credentials&quot;
+}</code>
+ </pre>
+    </span>
+<span id="execution-results-POSTapi-v1-auth" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-POSTapi-v1-auth"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-POSTapi-v1-auth"></code></pre>
+</span>
+<span id="execution-error-POSTapi-v1-auth" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-POSTapi-v1-auth"></code></pre>
+</span>
+<form id="form-POSTapi-v1-auth" data-method="POST"
+      data-path="api/v1/auth"
+      data-authed="0"
+      data-hasfiles="0"
+      data-isarraybody="0"
+      data-headers='{"Content-Type":"application\/json","Accept":"application\/json"}'
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('POSTapi-v1-auth', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+            </h3>
+            <p>
+            <small class="badge badge-black">POST</small>
+            <b><code>api/v1/auth</code></b>
+        </p>
+                            <h4 class="fancy-heading-panel"><b>Body Parameters</b></h4>
+        <p>
+            <b><code>name</code></b>&nbsp;&nbsp;<small>string</small>  &nbsp;
+                <input type="text"
+               name="name"
+               data-endpoint="POSTapi-v1-auth"
+               value="admin"
+               data-component="body" hidden>
+    <br>
+<p>Имя пользователя</p>
+        </p>
+                <p>
+            <b><code>password</code></b>&nbsp;&nbsp;<small>string</small>  &nbsp;
+                <input type="text"
+               name="password"
+               data-endpoint="POSTapi-v1-auth"
+               value="et"
+               data-component="body" hidden>
+    <br>
+<p>пароль</p>
+        </p>
+        </form>
+
+        <h1 id="profile">Profile</h1>
+
+    
+
+            <h2 id="profile-GETapi-v1-user">Свойства пользователя</h2>
+
+<p>
+</p>
+
+
+
+<span id="example-requests-GETapi-v1-user">
+<blockquote>Example request:</blockquote>
+
+
+<div class="bash-example">
+    <pre><code class="language-bash">curl --request GET \
+    --get "https://proxy.nekkoy.pp.ua/api/v1/user" \
+    --header "Content-Type: application/json" \
+    --header "Accept: application/json"</code></pre></div>
+
+
+<div class="javascript-example">
+    <pre><code class="language-javascript">const url = new URL(
+    "https://proxy.nekkoy.pp.ua/api/v1/user"
+);
+
+const headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+fetch(url, {
+    method: "GET",
+    headers,
+}).then(response =&gt; response.json());</code></pre></div>
+
+</span>
+
+<span id="example-responses-GETapi-v1-user">
+            <blockquote>
+            <p>Example response (200, success):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json">{
+    &quot;data&quot;: {
+        &quot;id&quot;: 1,
+        &quot;name&quot;: &quot;admin&quot;,
+        &quot;email&quot;: &quot;admin@local.dev&quot;,
+        &quot;email_verified_at&quot;: null
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (404, User not found):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json">{
+    &quot;error&quot;: 1,
+    &quot;message&quot;: &quot;User not found&quot;
+}</code>
+ </pre>
+    </span>
+<span id="execution-results-GETapi-v1-user" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-GETapi-v1-user"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-GETapi-v1-user"></code></pre>
+</span>
+<span id="execution-error-GETapi-v1-user" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-GETapi-v1-user"></code></pre>
+</span>
+<form id="form-GETapi-v1-user" data-method="GET"
+      data-path="api/v1/user"
+      data-authed="0"
+      data-hasfiles="0"
+      data-isarraybody="0"
+      data-headers='{"Content-Type":"application\/json","Accept":"application\/json"}'
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('GETapi-v1-user', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+            </h3>
+            <p>
+            <small class="badge badge-green">GET</small>
+            <b><code>api/v1/user</code></b>
+        </p>
+                    </form>
+
+        <h1 id="proxy-requests">Proxy Requests</h1>
+
+    
+
+            <h2 id="proxy-requests-GETapi-v1-proxy-requests">Список прокси запросов</h2>
+
+<p>
+</p>
+
+
+
+<span id="example-requests-GETapi-v1-proxy-requests">
+<blockquote>Example request:</blockquote>
+
+
+<div class="bash-example">
+    <pre><code class="language-bash">curl --request GET \
+    --get "https://proxy.nekkoy.pp.ua/api/v1/proxy/requests" \
+    --header "Content-Type: application/json" \
+    --header "Accept: application/json"</code></pre></div>
+
+
+<div class="javascript-example">
+    <pre><code class="language-javascript">const url = new URL(
+    "https://proxy.nekkoy.pp.ua/api/v1/proxy/requests"
+);
+
+const headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+fetch(url, {
+    method: "GET",
+    headers,
+}).then(response =&gt; response.json());</code></pre></div>
+
+</span>
+
+<span id="example-responses-GETapi-v1-proxy-requests">
+            <blockquote>
+            <p>Example response (200, success):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json">{
+&quot;data&quot;: [{
+&quot;id&quot;: 1,
+&quot;clientID&quot;: 1,
+&quot;msisdn&quot;: 192649172738,
+&quot;operationName&quot;: GetBalance,
+&quot;requestCode&quot;: 0,
+&quot;responseCode&quot;: 0,
+&quot;requestTime&quot;: &quot;2023-06-22 10:08:38&quot;,
+&quot;responseTime&quot;: &quot;2023-06-22 10:08:39&quot;
+},
+{
+&quot;id&quot;: 2,
+&quot;clientID&quot;: 1,
+&quot;msisdn&quot;: 192649172738,
+&quot;operationName&quot;: AddSubscription,
+&quot;requestCode&quot;: 0,
+&quot;responseCode&quot;: 0,
+&quot;requestTime&quot;: &quot;2023-06-22 10:12:11&quot;,
+&quot;responseTime&quot;: &quot;2023-06-22 10:12:12&quot;
+}]
+}</code>
+ </pre>
+    </span>
+<span id="execution-results-GETapi-v1-proxy-requests" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-GETapi-v1-proxy-requests"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-GETapi-v1-proxy-requests"></code></pre>
+</span>
+<span id="execution-error-GETapi-v1-proxy-requests" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-GETapi-v1-proxy-requests"></code></pre>
+</span>
+<form id="form-GETapi-v1-proxy-requests" data-method="GET"
+      data-path="api/v1/proxy/requests"
+      data-authed="0"
+      data-hasfiles="0"
+      data-isarraybody="0"
+      data-headers='{"Content-Type":"application\/json","Accept":"application\/json"}'
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('GETapi-v1-proxy-requests', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+            </h3>
+            <p>
+            <small class="badge badge-green">GET</small>
+            <b><code>api/v1/proxy/requests</code></b>
+        </p>
+                    <h4 class="fancy-heading-panel"><b>URL Parameters</b></h4>
+                    <p>
+                <b><code>clientID</code></b>&nbsp;&nbsp;<small>integer</small>     <i>optional</i> &nbsp;
+                <input type="number"
+               name="clientID"
+               data-endpoint="GETapi-v1-proxy-requests"
+               value="9"
+               data-component="url" hidden>
+    <br>
+<p>запросы только от этого пользователя прокси</p>
+            </p>
+                    <p>
+                <b><code>msisdn</code></b>&nbsp;&nbsp;<small>integer</small>     <i>optional</i> &nbsp;
+                <input type="number"
+               name="msisdn"
+               data-endpoint="GETapi-v1-proxy-requests"
+               value="13"
+               data-component="url" hidden>
+    <br>
+<p>запросы только от этого msisdn</p>
+            </p>
+                    </form>
+
+            <h2 id="proxy-requests-GETapi-v1-proxy-requests--id-">Свойства прокси запроса</h2>
+
+<p>
+</p>
+
+
+
+<span id="example-requests-GETapi-v1-proxy-requests--id-">
+<blockquote>Example request:</blockquote>
+
+
+<div class="bash-example">
+    <pre><code class="language-bash">curl --request GET \
+    --get "https://proxy.nekkoy.pp.ua/api/v1/proxy/requests/7" \
+    --header "Content-Type: application/json" \
+    --header "Accept: application/json"</code></pre></div>
+
+
+<div class="javascript-example">
+    <pre><code class="language-javascript">const url = new URL(
+    "https://proxy.nekkoy.pp.ua/api/v1/proxy/requests/7"
+);
+
+const headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+fetch(url, {
+    method: "GET",
+    headers,
+}).then(response =&gt; response.json());</code></pre></div>
+
+</span>
+
+<span id="example-responses-GETapi-v1-proxy-requests--id-">
+            <blockquote>
+            <p>Example response (200, success):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json">{
+    &quot;data&quot;: {
+        &quot;id&quot;: 2,
+        &quot;clientID&quot;: 1,
+        &quot;msisdn&quot;: 192649172738,
+        &quot;operationName&quot;: &quot;AddSubscription&quot;,
+        &quot;requestCode&quot;: &quot;0&quot;,
+        &quot;requestDesc&quot;: &quot;Success&quot;,
+        &quot;responseCode&quot;: &quot;0&quot;,
+        &quot;responseDesc&quot;: &quot;Success&quot;,
+        &quot;requestTime&quot;: &quot;2023-06-22 10:12:11&quot;,
+        &quot;responseTime&quot;: &quot;2023-06-22 10:12:12&quot;,
+        &quot;transactionId&quot;: &quot;f8b8d63a-9a72-31ff-9e3a-7901c9f3ad84&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (404, Proxy request not found):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json">{
+    &quot;error&quot;: 1,
+    &quot;message&quot;: &quot;Proxy request not found&quot;
+}</code>
+ </pre>
+    </span>
+<span id="execution-results-GETapi-v1-proxy-requests--id-" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-GETapi-v1-proxy-requests--id-"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-GETapi-v1-proxy-requests--id-"></code></pre>
+</span>
+<span id="execution-error-GETapi-v1-proxy-requests--id-" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-GETapi-v1-proxy-requests--id-"></code></pre>
+</span>
+<form id="form-GETapi-v1-proxy-requests--id-" data-method="GET"
+      data-path="api/v1/proxy/requests/{id}"
+      data-authed="0"
+      data-hasfiles="0"
+      data-isarraybody="0"
+      data-headers='{"Content-Type":"application\/json","Accept":"application\/json"}'
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('GETapi-v1-proxy-requests--id-', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+            </h3>
+            <p>
+            <small class="badge badge-green">GET</small>
+            <b><code>api/v1/proxy/requests/{id}</code></b>
+        </p>
+                    <h4 class="fancy-heading-panel"><b>URL Parameters</b></h4>
+                    <p>
+                <b><code>id</code></b>&nbsp;&nbsp;<small>integer</small>  &nbsp;
+                <input type="number"
+               name="id"
+               data-endpoint="GETapi-v1-proxy-requests--id-"
+               value="7"
+               data-component="url" hidden>
+    <br>
+<p>ИД прокси запроса</p>
+            </p>
+                    </form>
+
+        <h1 id="proxy-users">Proxy Users</h1>
+
+    
+
+            <h2 id="proxy-users-GETapi-v1-proxy-users">Список пользователей прокси</h2>
+
+<p>
+</p>
+
+
+
+<span id="example-requests-GETapi-v1-proxy-users">
+<blockquote>Example request:</blockquote>
+
+
+<div class="bash-example">
+    <pre><code class="language-bash">curl --request GET \
+    --get "https://proxy.nekkoy.pp.ua/api/v1/proxy/users" \
+    --header "Content-Type: application/json" \
+    --header "Accept: application/json"</code></pre></div>
+
+
+<div class="javascript-example">
+    <pre><code class="language-javascript">const url = new URL(
+    "https://proxy.nekkoy.pp.ua/api/v1/proxy/users"
+);
+
+const headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+fetch(url, {
+    method: "GET",
+    headers,
+}).then(response =&gt; response.json());</code></pre></div>
+
+</span>
+
+<span id="example-responses-GETapi-v1-proxy-users">
+            <blockquote>
+            <p>Example response (200, success):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json">{
+    &quot;data&quot;: [
+        {
+            &quot;id&quot;: 1,
+            &quot;name&quot;: &quot;admin&quot;,
+            &quot;update_date&quot;: &quot;2023-12-31&quot;,
+            &quot;production_url&quot;: &quot;https://devel.local/callback/production&quot;,
+            &quot;testing_url&quot;: &quot;https://devel.local/callback/testing&quot;
+        },
+        {
+            &quot;id&quot;: 2,
+            &quot;name&quot;: &quot;support&quot;,
+            &quot;update_date&quot;: &quot;2024-06-31&quot;,
+            &quot;production_url&quot;: &quot;https://support.local/callback/production&quot;,
+            &quot;testing_url&quot;: &quot;https://support.local/callback/testing&quot;
+        }
+    ]
+}</code>
+ </pre>
+    </span>
+<span id="execution-results-GETapi-v1-proxy-users" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-GETapi-v1-proxy-users"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-GETapi-v1-proxy-users"></code></pre>
+</span>
+<span id="execution-error-GETapi-v1-proxy-users" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-GETapi-v1-proxy-users"></code></pre>
+</span>
+<form id="form-GETapi-v1-proxy-users" data-method="GET"
+      data-path="api/v1/proxy/users"
+      data-authed="0"
+      data-hasfiles="0"
+      data-isarraybody="0"
+      data-headers='{"Content-Type":"application\/json","Accept":"application\/json"}'
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('GETapi-v1-proxy-users', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+            </h3>
+            <p>
+            <small class="badge badge-green">GET</small>
+            <b><code>api/v1/proxy/users</code></b>
+        </p>
+                    </form>
+
+            <h2 id="proxy-users-GETapi-v1-proxy-users--id-">Свойства пользователя прокси</h2>
+
+<p>
+</p>
+
+
+
+<span id="example-requests-GETapi-v1-proxy-users--id-">
+<blockquote>Example request:</blockquote>
+
+
+<div class="bash-example">
+    <pre><code class="language-bash">curl --request GET \
+    --get "https://proxy.nekkoy.pp.ua/api/v1/proxy/users/14" \
+    --header "Content-Type: application/json" \
+    --header "Accept: application/json"</code></pre></div>
+
+
+<div class="javascript-example">
+    <pre><code class="language-javascript">const url = new URL(
+    "https://proxy.nekkoy.pp.ua/api/v1/proxy/users/14"
+);
+
+const headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+fetch(url, {
+    method: "GET",
+    headers,
+}).then(response =&gt; response.json());</code></pre></div>
+
+</span>
+
+<span id="example-responses-GETapi-v1-proxy-users--id-">
+            <blockquote>
+            <p>Example response (200, success):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json">{
+    &quot;data&quot;: {
+        &quot;id&quot;: 1,
+        &quot;name&quot;: &quot;admin&quot;,
+        &quot;update_date&quot;: &quot;2023-12-31&quot;,
+        &quot;production_url&quot;: &quot;https://devel.local/callback/production&quot;,
+        &quot;testing_url&quot;: &quot;https://devel.local/callback/testing&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (404, User not found):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json">{
+    &quot;error&quot;: 1,
+    &quot;message&quot;: &quot;User not found&quot;
+}</code>
+ </pre>
+    </span>
+<span id="execution-results-GETapi-v1-proxy-users--id-" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-GETapi-v1-proxy-users--id-"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-GETapi-v1-proxy-users--id-"></code></pre>
+</span>
+<span id="execution-error-GETapi-v1-proxy-users--id-" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-GETapi-v1-proxy-users--id-"></code></pre>
+</span>
+<form id="form-GETapi-v1-proxy-users--id-" data-method="GET"
+      data-path="api/v1/proxy/users/{id}"
+      data-authed="0"
+      data-hasfiles="0"
+      data-isarraybody="0"
+      data-headers='{"Content-Type":"application\/json","Accept":"application\/json"}'
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('GETapi-v1-proxy-users--id-', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+            </h3>
+            <p>
+            <small class="badge badge-green">GET</small>
+            <b><code>api/v1/proxy/users/{id}</code></b>
+        </p>
+                    <h4 class="fancy-heading-panel"><b>URL Parameters</b></h4>
+                    <p>
+                <b><code>id</code></b>&nbsp;&nbsp;<small>integer</small>  &nbsp;
+                <input type="number"
+               name="id"
+               data-endpoint="GETapi-v1-proxy-users--id-"
+               value="14"
+               data-component="url" hidden>
+    <br>
+<p>ИД пользователя прокси</p>
+            </p>
+                    </form>
+
+            <h2 id="proxy-users-PATCHapi-v1-proxy-users--id-">Изменить прокси пользователя</h2>
+
+<p>
+</p>
+
+
+
+<span id="example-requests-PATCHapi-v1-proxy-users--id-">
+<blockquote>Example request:</blockquote>
+
+
+<div class="bash-example">
+    <pre><code class="language-bash">curl --request PATCH \
+    "https://proxy.nekkoy.pp.ua/api/v1/proxy/users/1" \
+    --header "Content-Type: application/json" \
+    --header "Accept: application/json" \
+    --data "{
+    \"name\": \"quidem\",
+    \"update_date\": \"cum\",
+    \"production_url\": \"architecto\",
+    \"testing_url\": \"aut\"
+}"
+</code></pre></div>
+
+
+<div class="javascript-example">
+    <pre><code class="language-javascript">const url = new URL(
+    "https://proxy.nekkoy.pp.ua/api/v1/proxy/users/1"
+);
+
+const headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+let body = {
+    "name": "quidem",
+    "update_date": "cum",
+    "production_url": "architecto",
+    "testing_url": "aut"
+};
+
+fetch(url, {
+    method: "PATCH",
+    headers,
+    body: JSON.stringify(body),
+}).then(response =&gt; response.json());</code></pre></div>
+
+</span>
+
+<span id="example-responses-PATCHapi-v1-proxy-users--id-">
+            <blockquote>
+            <p>Example response (200, success):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json">{
+    &quot;data&quot;: {
+        &quot;id&quot;: 3,
+        &quot;name&quot;: &quot;customer&quot;,
+        &quot;update_date&quot;: &quot;2023-12-31&quot;,
+        &quot;production_url&quot;: &quot;https://customer.local/callback/production&quot;,
+        &quot;testing_url&quot;: &quot;&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (404, User not found):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json">{
+    &quot;error&quot;: 1,
+    &quot;message&quot;: &quot;User not found&quot;
+}</code>
+ </pre>
+    </span>
+<span id="execution-results-PATCHapi-v1-proxy-users--id-" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-PATCHapi-v1-proxy-users--id-"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-PATCHapi-v1-proxy-users--id-"></code></pre>
+</span>
+<span id="execution-error-PATCHapi-v1-proxy-users--id-" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-PATCHapi-v1-proxy-users--id-"></code></pre>
+</span>
+<form id="form-PATCHapi-v1-proxy-users--id-" data-method="PATCH"
+      data-path="api/v1/proxy/users/{id}"
+      data-authed="0"
+      data-hasfiles="0"
+      data-isarraybody="0"
+      data-headers='{"Content-Type":"application\/json","Accept":"application\/json"}'
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('PATCHapi-v1-proxy-users--id-', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+            </h3>
+            <p>
+            <small class="badge badge-purple">PATCH</small>
+            <b><code>api/v1/proxy/users/{id}</code></b>
+        </p>
+                    <h4 class="fancy-heading-panel"><b>URL Parameters</b></h4>
+                    <p>
+                <b><code>id</code></b>&nbsp;&nbsp;<small>integer</small>  &nbsp;
+                <input type="number"
+               name="id"
+               data-endpoint="PATCHapi-v1-proxy-users--id-"
+               value="1"
+               data-component="url" hidden>
+    <br>
+<p>The ID of the user.</p>
+            </p>
+                            <h4 class="fancy-heading-panel"><b>Body Parameters</b></h4>
+        <p>
+            <b><code>name</code></b>&nbsp;&nbsp;<small>string</small>     <i>optional</i> &nbsp;
+                <input type="text"
+               name="name"
+               data-endpoint="PATCHapi-v1-proxy-users--id-"
+               value="quidem"
+               data-component="body" hidden>
+    <br>
+<p>Имя клиента</p>
+        </p>
+                <p>
+            <b><code>update_date</code></b>&nbsp;&nbsp;<small>string</small>     <i>optional</i> &nbsp;
+                <input type="text"
+               name="update_date"
+               data-endpoint="PATCHapi-v1-proxy-users--id-"
+               value="cum"
+               data-component="body" hidden>
+    <br>
+<p>дата обновлений из ACR системы</p>
+        </p>
+                <p>
+            <b><code>production_url</code></b>&nbsp;&nbsp;<small>string</small>     <i>optional</i> &nbsp;
+                <input type="text"
+               name="production_url"
+               data-endpoint="PATCHapi-v1-proxy-users--id-"
+               value="architecto"
+               data-component="body" hidden>
+    <br>
+<p>URL callback для production</p>
+        </p>
+                <p>
+            <b><code>testing_url</code></b>&nbsp;&nbsp;<small>string</small>     <i>optional</i> &nbsp;
+                <input type="text"
+               name="testing_url"
+               data-endpoint="PATCHapi-v1-proxy-users--id-"
+               value="aut"
+               data-component="body" hidden>
+    <br>
+<p>URL callback для тестирования</p>
+        </p>
+        </form>
+
+            <h2 id="proxy-users-POSTapi-v1-proxy-users">Создать прокси пользователя</h2>
+
+<p>
+</p>
+
+
+
+<span id="example-requests-POSTapi-v1-proxy-users">
+<blockquote>Example request:</blockquote>
+
+
+<div class="bash-example">
+    <pre><code class="language-bash">curl --request POST \
+    "https://proxy.nekkoy.pp.ua/api/v1/proxy/users" \
+    --header "Content-Type: application/json" \
+    --header "Accept: application/json" \
+    --data "{
+    \"id\": 9,
+    \"name\": \"temporibus\",
+    \"update_date\": \"2023-12-31\",
+    \"production_url\": \"quidem\",
+    \"testing_url\": \"ut\"
+}"
+</code></pre></div>
+
+
+<div class="javascript-example">
+    <pre><code class="language-javascript">const url = new URL(
+    "https://proxy.nekkoy.pp.ua/api/v1/proxy/users"
+);
+
+const headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+let body = {
+    "id": 9,
+    "name": "temporibus",
+    "update_date": "2023-12-31",
+    "production_url": "quidem",
+    "testing_url": "ut"
+};
+
+fetch(url, {
+    method: "POST",
+    headers,
+    body: JSON.stringify(body),
+}).then(response =&gt; response.json());</code></pre></div>
+
+</span>
+
+<span id="example-responses-POSTapi-v1-proxy-users">
+            <blockquote>
+            <p>Example response (200, success):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json">{
+    &quot;data&quot;: {
+        &quot;id&quot;: 3,
+        &quot;name&quot;: &quot;customer&quot;,
+        &quot;update_date&quot;: &quot;2023-12-31&quot;,
+        &quot;production_url&quot;: &quot;https://customer.local/callback/production&quot;,
+        &quot;testing_url&quot;: &quot;&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (403, User already exists):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json">{
+    &quot;error&quot;: 1,
+    &quot;message&quot;: &quot;User with this ID exists&quot;
+}</code>
+ </pre>
+    </span>
+<span id="execution-results-POSTapi-v1-proxy-users" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-POSTapi-v1-proxy-users"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-POSTapi-v1-proxy-users"></code></pre>
+</span>
+<span id="execution-error-POSTapi-v1-proxy-users" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-POSTapi-v1-proxy-users"></code></pre>
+</span>
+<form id="form-POSTapi-v1-proxy-users" data-method="POST"
+      data-path="api/v1/proxy/users"
+      data-authed="0"
+      data-hasfiles="0"
+      data-isarraybody="0"
+      data-headers='{"Content-Type":"application\/json","Accept":"application\/json"}'
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('POSTapi-v1-proxy-users', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+            </h3>
+            <p>
+            <small class="badge badge-black">POST</small>
+            <b><code>api/v1/proxy/users</code></b>
+        </p>
+                            <h4 class="fancy-heading-panel"><b>Body Parameters</b></h4>
+        <p>
+            <b><code>id</code></b>&nbsp;&nbsp;<small>integer</small>  &nbsp;
+                <input type="number"
+               name="id"
+               data-endpoint="POSTapi-v1-proxy-users"
+               value="9"
+               data-component="body" hidden>
+    <br>
+<p>ИД прокси пользователя из ACR системы</p>
+        </p>
+                <p>
+            <b><code>name</code></b>&nbsp;&nbsp;<small>string</small>  &nbsp;
+                <input type="text"
+               name="name"
+               data-endpoint="POSTapi-v1-proxy-users"
+               value="temporibus"
+               data-component="body" hidden>
+    <br>
+<p>Имя клиента</p>
+        </p>
+                <p>
+            <b><code>update_date</code></b>&nbsp;&nbsp;<small>string</small>  &nbsp;
+                <input type="text"
+               name="update_date"
+               data-endpoint="POSTapi-v1-proxy-users"
+               value="2023-12-31"
+               data-component="body" hidden>
+    <br>
+<p>дата обновлений из ACR системы</p>
+        </p>
+                <p>
+            <b><code>production_url</code></b>&nbsp;&nbsp;<small>string</small>  &nbsp;
+                <input type="text"
+               name="production_url"
+               data-endpoint="POSTapi-v1-proxy-users"
+               value="quidem"
+               data-component="body" hidden>
+    <br>
+<p>URL callback для production</p>
+        </p>
+                <p>
+            <b><code>testing_url</code></b>&nbsp;&nbsp;<small>string</small>     <i>optional</i> &nbsp;
+                <input type="text"
+               name="testing_url"
+               data-endpoint="POSTapi-v1-proxy-users"
+               value="ut"
+               data-component="body" hidden>
+    <br>
+<p>URL callback для тестирования</p>
+        </p>
+        </form>
+
+    
+
+        
+    </div>
+    <div class="dark-box">
+                    <div class="lang-selector">
+                                                        <button type="button" class="lang-button" data-language-name="bash">bash</button>
+                                                        <button type="button" class="lang-button" data-language-name="javascript">javascript</button>
+                            </div>
+            </div>
+</div>
+</body>
+</html>
