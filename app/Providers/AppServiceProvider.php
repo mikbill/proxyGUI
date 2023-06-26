@@ -1,6 +1,6 @@
 <?php
 
-namespace Index\Providers;
+namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Pagination\Paginator;

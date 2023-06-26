@@ -1,13 +1,13 @@
 <?php
 
-namespace Index\Http\Resources;
+namespace App\Http\Resources;
 
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
 
 /**
  * Class UserProfileResponse
- * @package Index\Http\Response\Auth
+ * @package App\Http\Response\Auth
  */
 class UserProfileResource extends JsonResource
 {

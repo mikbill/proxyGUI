@@ -171,11 +171,11 @@ return [
         /*
          * Application Service Providers...
          */
-        Index\Providers\AppServiceProvider::class,
-        Index\Providers\AuthServiceProvider::class,
-        // Index\Providers\BroadcastServiceProvider::class,
-        Index\Providers\EventServiceProvider::class,
-        Index\Providers\RouteServiceProvider::class,
+        App\Providers\AppServiceProvider::class,
+        App\Providers\AuthServiceProvider::class,
+        // App\Providers\BroadcastServiceProvider::class,
+        App\Providers\EventServiceProvider::class,
+        App\Providers\RouteServiceProvider::class,
     ],
 
     /*
@@ -191,7 +191,7 @@ return [
 
     'aliases' => [
 
-        'Index' => Illuminate\Support\Facades\Index::class,
+        'App' => Illuminate\Support\Facades\App::class,
         'Arr' => Illuminate\Support\Arr::class,
         'Artisan' => Illuminate\Support\Facades\Artisan::class,
         'Auth' => Illuminate\Support\Facades\Auth::class,
