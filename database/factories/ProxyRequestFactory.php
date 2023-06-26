@@ -2,8 +2,8 @@
 
 namespace Database\Factories;
 
-use App\Models\ProxyClient;
-use App\Models\ProxyRequest;
+use Index\Models\ProxyClient;
+use Index\Models\ProxyRequest;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Arr;
 

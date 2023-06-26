@@ -2,7 +2,7 @@
 
 namespace Database\Factories;
 
-use App\Models\ProxyClient;
+use Index\Models\ProxyClient;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
