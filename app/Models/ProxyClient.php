@@ -1,12 +1,12 @@
 <?php
 
-namespace Index\Models;
+namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 /**
- * Index\Models\ProxyClient
+ * App\Models\ProxyClient
  *
  * @property int $id
  * @property string $name

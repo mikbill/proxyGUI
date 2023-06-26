@@ -1,12 +1,12 @@
 <?php
 
-namespace Index\Http\Requests;
+namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
 /**
  * Class LoginRequest
- * @package Index\Http\Requests\Auth
+ * @package App\Http\Requests\Auth
  */
 class AuthRequest extends FormRequest
 {

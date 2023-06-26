@@ -3,10 +3,10 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
-use Index\Http\Controllers\AuthController;
-use Index\Http\Controllers\UserController;
-use Index\Http\Controllers\ProxyUsersController;
-use Index\Http\Controllers\ProxyRequestsController;
+use App\Http\Controllers\AuthController;
+use App\Http\Controllers\UserController;
+use App\Http\Controllers\ProxyUsersController;
+use App\Http\Controllers\ProxyRequestsController;
 
 /*
 |--------------------------------------------------------------------------

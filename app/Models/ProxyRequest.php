@@ -1,12 +1,12 @@
 <?php
 
-namespace Index\Models;
+namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 /**
- * Index\Models\ProxyRequest
+ * App\Models\ProxyRequest
  *
  * @property int $id
  * @property \Illuminate\Support\Carbon|null $created_at

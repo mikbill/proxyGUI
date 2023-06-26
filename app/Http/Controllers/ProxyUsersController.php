@@ -1,18 +1,18 @@
 <?php
 
-namespace Index\Http\Controllers;
+namespace App\Http\Controllers;
 
-use Index\Models\ProxyClient;
-use Index\Http\Controllers\Controller;
-use Index\Http\Requests\CreateProxyUserRequest;
-use Index\Http\Requests\UpdateProxyUserRequest;
-use Index\Http\Resources\ProxyUsersResource;
+use App\Models\ProxyClient;
+use App\Http\Controllers\Controller;
+use App\Http\Requests\CreateProxyUserRequest;
+use App\Http\Requests\UpdateProxyUserRequest;
+use App\Http\Resources\ProxyUsersResource;
 
 use Illuminate\Http\JsonResponse;
 
 /**
  * Class Users
- * @package Index\Http\Controllers\Proxy
+ * @package App\Http\Controllers\Proxy
  * @group Proxy Users
  * @authenticated
  */

@@ -1,16 +1,16 @@
 <?php
 
-namespace Index\Http\Controllers;
+namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Support\Facades\Auth;
 
-use Index\Http\Resources\ProxyUsersResource;
+use App\Http\Resources\ProxyUsersResource;
 
 /**
  * Class UserController
- * @package Index\Http\Controllers
+ * @package App\Http\Controllers
  * @group Profile
  * @authenticated
  */

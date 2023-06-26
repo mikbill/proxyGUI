@@ -3,8 +3,8 @@
 namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
-use Index\Models\ProxyClient;
-use Index\Models\ProxyRequest;
+use App\Models\ProxyClient;
+use App\Models\ProxyRequest;
 
 class DatabaseSeeder extends Seeder
 {
@@ -15,7 +15,7 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        // \Index\Models\User::factory(10)->create();
+        // \App\Models\User::factory(10)->create();
         ProxyClient::factory(10)->create();
         ProxyRequest::factory(100)->create();
     }
