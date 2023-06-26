@@ -1,12 +1,12 @@
 <?php
 
-namespace App\Http\Requests;
+namespace Index\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
 /**
  * Class ProxyRequestsFilterRequest
- * @package App\Http\Requests\Auth
+ * @package Index\Http\Requests\Auth
  */
 class ProxyRequestsFilterRequest extends FormRequest
 {

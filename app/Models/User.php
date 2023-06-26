@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Models;
+namespace Index\Models;
 
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -10,7 +10,7 @@ use Laravel\Sanctum\HasApiTokens;
 use Tymon\JWTAuth\Contracts\JWTSubject;
 
 /**
- * App\Models\User
+ * Index\Models\User
  *
  * @property int $id
  * @property string $name

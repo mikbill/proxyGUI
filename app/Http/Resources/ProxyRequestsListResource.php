@@ -1,13 +1,13 @@
 <?php
 
-namespace App\Http\Resources;
+namespace Index\Http\Resources;
 
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
 
 /**
  * Class ProxyRequestsResource
- * @package App\Http\Response\Auth
+ * @package Index\Http\Response\Auth
  */
 class ProxyRequestsListResource extends JsonResource
 {
