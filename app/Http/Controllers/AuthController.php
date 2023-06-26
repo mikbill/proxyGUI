@@ -1,14 +1,14 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace Index\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Http\JsonResponse;
-use App\Http\Requests\AuthRequest;
+use Index\Http\Requests\AuthRequest;
 
 /**
  * Class AuthController
- * @package App\Http\Controllers
+ * @package Index\Http\Controllers
  * @group Auth
  * Получение JWT токена для дальнейшей работы с API
  */
