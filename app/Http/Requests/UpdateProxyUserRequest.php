@@ -1,12 +1,12 @@
 <?php
 
-namespace Index\Http\Requests;
+namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
 /**
  * Class UpdateProxyUserRequest
- * @package Index\Http\Requests\Proxy
+ * @package App\Http\Requests\Proxy
  */
 class UpdateProxyUserRequest extends FormRequest
 {
