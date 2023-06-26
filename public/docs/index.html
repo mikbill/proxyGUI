@@ -123,7 +123,7 @@
                             <li><a href="http://github.com/knuckleswtf/scribe">Documentation powered by Scribe ✍</a></li>
                     </ul>
         <ul class="toc-footer" id="last-updated">
-        <li>Last updated: June 23 2023</li>
+        <li>Last updated: June 26 2023</li>
     </ul>
 </div>
 
@@ -139,7 +139,9 @@
 <pre><code class="language-yaml">https://proxy.nekkoy.pp.ua</code></pre>
 
         <h1 id="authenticating-requests">Authenticating requests</h1>
-<p>This API is not authenticated.</p>
+<p>This API is authenticated by sending an <strong><code>Authorization</code></strong> header with the value <strong><code>"Bearer {YOUR_AUTH_KEY}"</code></strong>.</p>
+<p>All authenticated endpoints are marked with a <code>requires authentication</code> badge in the documentation below.</p>
+<p>You can retrieve your token by visiting your dashboard and clicking <b>Generate API token</b>.</p>
 
         <h1 id="auth">Auth</h1>
 
@@ -163,7 +165,7 @@
     --header "Accept: application/json" \
     --data "{
     \"name\": \"admin\",
-    \"password\": \"et\"
+    \"password\": \"culpa\"
 }"
 </code></pre></div>
 
@@ -180,7 +182,7 @@ const headers = {
 
 let body = {
     "name": "admin",
-    "password": "et"
+    "password": "culpa"
 };
 
 fetch(url, {
@@ -253,7 +255,7 @@ fetch(url, {
                 <input type="text"
                name="password"
                data-endpoint="POSTapi-v1-auth"
-               value="et"
+               value="culpa"
                data-component="body" hidden>
     <br>
 <p>пароль</p>
@@ -267,6 +269,7 @@ fetch(url, {
             <h2 id="profile-GETapi-v1-user">Свойства пользователя</h2>
 
 <p>
+<small class="badge badge-darkred">requires authentication</small>
 </p>
 
 
@@ -278,6 +281,7 @@ fetch(url, {
 <div class="bash-example">
     <pre><code class="language-bash">curl --request GET \
     --get "https://proxy.nekkoy.pp.ua/api/v1/user" \
+    --header "Authorization: Bearer {YOUR_AUTH_KEY}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre></div>
 
@@ -288,6 +292,7 @@ fetch(url, {
 );
 
 const headers = {
+    "Authorization": "Bearer {YOUR_AUTH_KEY}",
     "Content-Type": "application/json",
     "Accept": "application/json",
 };
@@ -337,10 +342,10 @@ fetch(url, {
 </span>
 <form id="form-GETapi-v1-user" data-method="GET"
       data-path="api/v1/user"
-      data-authed="0"
+      data-authed="1"
       data-hasfiles="0"
       data-isarraybody="0"
-      data-headers='{"Content-Type":"application\/json","Accept":"application\/json"}'
+      data-headers='{"Authorization":"Bearer {YOUR_AUTH_KEY}","Content-Type":"application\/json","Accept":"application\/json"}'
       autocomplete="off"
       onsubmit="event.preventDefault(); executeTryOut('GETapi-v1-user', this);">
     <h3>
@@ -350,7 +355,15 @@ fetch(url, {
             <small class="badge badge-green">GET</small>
             <b><code>api/v1/user</code></b>
         </p>
-                    </form>
+                <p>
+            <label id="auth-GETapi-v1-user" hidden>Authorization header:
+                <b><code>Bearer </code></b><input type="text"
+                                                                name="Authorization"
+                                                                data-prefix="Bearer "
+                                                                data-endpoint="GETapi-v1-user"
+                                                                data-component="header"></label>
+        </p>
+                </form>
 
         <h1 id="proxy-requests">Proxy Requests</h1>
 
@@ -359,6 +372,7 @@ fetch(url, {
             <h2 id="proxy-requests-GETapi-v1-proxy-requests">Список прокси запросов</h2>
 
 <p>
+<small class="badge badge-darkred">requires authentication</small>
 </p>
 
 
@@ -370,6 +384,7 @@ fetch(url, {
 <div class="bash-example">
     <pre><code class="language-bash">curl --request GET \
     --get "https://proxy.nekkoy.pp.ua/api/v1/proxy/requests" \
+    --header "Authorization: Bearer {YOUR_AUTH_KEY}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre></div>
 
@@ -380,6 +395,7 @@ fetch(url, {
 );
 
 const headers = {
+    "Authorization": "Bearer {YOUR_AUTH_KEY}",
     "Content-Type": "application/json",
     "Accept": "application/json",
 };
@@ -433,10 +449,10 @@ fetch(url, {
 </span>
 <form id="form-GETapi-v1-proxy-requests" data-method="GET"
       data-path="api/v1/proxy/requests"
-      data-authed="0"
+      data-authed="1"
       data-hasfiles="0"
       data-isarraybody="0"
-      data-headers='{"Content-Type":"application\/json","Accept":"application\/json"}'
+      data-headers='{"Authorization":"Bearer {YOUR_AUTH_KEY}","Content-Type":"application\/json","Accept":"application\/json"}'
       autocomplete="off"
       onsubmit="event.preventDefault(); executeTryOut('GETapi-v1-proxy-requests', this);">
     <h3>
@@ -446,13 +462,21 @@ fetch(url, {
             <small class="badge badge-green">GET</small>
             <b><code>api/v1/proxy/requests</code></b>
         </p>
-                    <h4 class="fancy-heading-panel"><b>URL Parameters</b></h4>
+                <p>
+            <label id="auth-GETapi-v1-proxy-requests" hidden>Authorization header:
+                <b><code>Bearer </code></b><input type="text"
+                                                                name="Authorization"
+                                                                data-prefix="Bearer "
+                                                                data-endpoint="GETapi-v1-proxy-requests"
+                                                                data-component="header"></label>
+        </p>
+                <h4 class="fancy-heading-panel"><b>URL Parameters</b></h4>
                     <p>
                 <b><code>clientID</code></b>&nbsp;&nbsp;<small>integer</small>     <i>optional</i> &nbsp;
                 <input type="number"
                name="clientID"
                data-endpoint="GETapi-v1-proxy-requests"
-               value="9"
+               value="2"
                data-component="url" hidden>
     <br>
 <p>запросы только от этого пользователя прокси</p>
@@ -462,7 +486,7 @@ fetch(url, {
                 <input type="number"
                name="msisdn"
                data-endpoint="GETapi-v1-proxy-requests"
-               value="13"
+               value="18"
                data-component="url" hidden>
     <br>
 <p>запросы только от этого msisdn</p>
@@ -472,6 +496,7 @@ fetch(url, {
             <h2 id="proxy-requests-GETapi-v1-proxy-requests--id-">Свойства прокси запроса</h2>
 
 <p>
+<small class="badge badge-darkred">requires authentication</small>
 </p>
 
 
@@ -482,17 +507,19 @@ fetch(url, {
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request GET \
-    --get "https://proxy.nekkoy.pp.ua/api/v1/proxy/requests/7" \
+    --get "https://proxy.nekkoy.pp.ua/api/v1/proxy/requests/12" \
+    --header "Authorization: Bearer {YOUR_AUTH_KEY}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre></div>
 
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "https://proxy.nekkoy.pp.ua/api/v1/proxy/requests/7"
+    "https://proxy.nekkoy.pp.ua/api/v1/proxy/requests/12"
 );
 
 const headers = {
+    "Authorization": "Bearer {YOUR_AUTH_KEY}",
     "Content-Type": "application/json",
     "Accept": "application/json",
 };
@@ -549,10 +576,10 @@ fetch(url, {
 </span>
 <form id="form-GETapi-v1-proxy-requests--id-" data-method="GET"
       data-path="api/v1/proxy/requests/{id}"
-      data-authed="0"
+      data-authed="1"
       data-hasfiles="0"
       data-isarraybody="0"
-      data-headers='{"Content-Type":"application\/json","Accept":"application\/json"}'
+      data-headers='{"Authorization":"Bearer {YOUR_AUTH_KEY}","Content-Type":"application\/json","Accept":"application\/json"}'
       autocomplete="off"
       onsubmit="event.preventDefault(); executeTryOut('GETapi-v1-proxy-requests--id-', this);">
     <h3>
@@ -562,13 +589,21 @@ fetch(url, {
             <small class="badge badge-green">GET</small>
             <b><code>api/v1/proxy/requests/{id}</code></b>
         </p>
-                    <h4 class="fancy-heading-panel"><b>URL Parameters</b></h4>
+                <p>
+            <label id="auth-GETapi-v1-proxy-requests--id-" hidden>Authorization header:
+                <b><code>Bearer </code></b><input type="text"
+                                                                name="Authorization"
+                                                                data-prefix="Bearer "
+                                                                data-endpoint="GETapi-v1-proxy-requests--id-"
+                                                                data-component="header"></label>
+        </p>
+                <h4 class="fancy-heading-panel"><b>URL Parameters</b></h4>
                     <p>
                 <b><code>id</code></b>&nbsp;&nbsp;<small>integer</small>  &nbsp;
                 <input type="number"
                name="id"
                data-endpoint="GETapi-v1-proxy-requests--id-"
-               value="7"
+               value="12"
                data-component="url" hidden>
     <br>
 <p>ИД прокси запроса</p>
@@ -582,6 +617,7 @@ fetch(url, {
             <h2 id="proxy-users-GETapi-v1-proxy-users">Список пользователей прокси</h2>
 
 <p>
+<small class="badge badge-darkred">requires authentication</small>
 </p>
 
 
@@ -593,6 +629,7 @@ fetch(url, {
 <div class="bash-example">
     <pre><code class="language-bash">curl --request GET \
     --get "https://proxy.nekkoy.pp.ua/api/v1/proxy/users" \
+    --header "Authorization: Bearer {YOUR_AUTH_KEY}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre></div>
 
@@ -603,6 +640,7 @@ fetch(url, {
 );
 
 const headers = {
+    "Authorization": "Bearer {YOUR_AUTH_KEY}",
     "Content-Type": "application/json",
     "Accept": "application/json",
 };
@@ -652,10 +690,10 @@ fetch(url, {
 </span>
 <form id="form-GETapi-v1-proxy-users" data-method="GET"
       data-path="api/v1/proxy/users"
-      data-authed="0"
+      data-authed="1"
       data-hasfiles="0"
       data-isarraybody="0"
-      data-headers='{"Content-Type":"application\/json","Accept":"application\/json"}'
+      data-headers='{"Authorization":"Bearer {YOUR_AUTH_KEY}","Content-Type":"application\/json","Accept":"application\/json"}'
       autocomplete="off"
       onsubmit="event.preventDefault(); executeTryOut('GETapi-v1-proxy-users', this);">
     <h3>
@@ -665,11 +703,20 @@ fetch(url, {
             <small class="badge badge-green">GET</small>
             <b><code>api/v1/proxy/users</code></b>
         </p>
-                    </form>
+                <p>
+            <label id="auth-GETapi-v1-proxy-users" hidden>Authorization header:
+                <b><code>Bearer </code></b><input type="text"
+                                                                name="Authorization"
+                                                                data-prefix="Bearer "
+                                                                data-endpoint="GETapi-v1-proxy-users"
+                                                                data-component="header"></label>
+        </p>
+                </form>
 
             <h2 id="proxy-users-GETapi-v1-proxy-users--id-">Свойства пользователя прокси</h2>
 
 <p>
+<small class="badge badge-darkred">requires authentication</small>
 </p>
 
 
@@ -680,17 +727,19 @@ fetch(url, {
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request GET \
-    --get "https://proxy.nekkoy.pp.ua/api/v1/proxy/users/14" \
+    --get "https://proxy.nekkoy.pp.ua/api/v1/proxy/users/15" \
+    --header "Authorization: Bearer {YOUR_AUTH_KEY}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre></div>
 
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "https://proxy.nekkoy.pp.ua/api/v1/proxy/users/14"
+    "https://proxy.nekkoy.pp.ua/api/v1/proxy/users/15"
 );
 
 const headers = {
+    "Authorization": "Bearer {YOUR_AUTH_KEY}",
     "Content-Type": "application/json",
     "Accept": "application/json",
 };
@@ -741,10 +790,10 @@ fetch(url, {
 </span>
 <form id="form-GETapi-v1-proxy-users--id-" data-method="GET"
       data-path="api/v1/proxy/users/{id}"
-      data-authed="0"
+      data-authed="1"
       data-hasfiles="0"
       data-isarraybody="0"
-      data-headers='{"Content-Type":"application\/json","Accept":"application\/json"}'
+      data-headers='{"Authorization":"Bearer {YOUR_AUTH_KEY}","Content-Type":"application\/json","Accept":"application\/json"}'
       autocomplete="off"
       onsubmit="event.preventDefault(); executeTryOut('GETapi-v1-proxy-users--id-', this);">
     <h3>
@@ -754,13 +803,21 @@ fetch(url, {
             <small class="badge badge-green">GET</small>
             <b><code>api/v1/proxy/users/{id}</code></b>
         </p>
-                    <h4 class="fancy-heading-panel"><b>URL Parameters</b></h4>
+                <p>
+            <label id="auth-GETapi-v1-proxy-users--id-" hidden>Authorization header:
+                <b><code>Bearer </code></b><input type="text"
+                                                                name="Authorization"
+                                                                data-prefix="Bearer "
+                                                                data-endpoint="GETapi-v1-proxy-users--id-"
+                                                                data-component="header"></label>
+        </p>
+                <h4 class="fancy-heading-panel"><b>URL Parameters</b></h4>
                     <p>
                 <b><code>id</code></b>&nbsp;&nbsp;<small>integer</small>  &nbsp;
                 <input type="number"
                name="id"
                data-endpoint="GETapi-v1-proxy-users--id-"
-               value="14"
+               value="15"
                data-component="url" hidden>
     <br>
 <p>ИД пользователя прокси</p>
@@ -770,6 +827,7 @@ fetch(url, {
             <h2 id="proxy-users-PATCHapi-v1-proxy-users--id-">Изменить прокси пользователя</h2>
 
 <p>
+<small class="badge badge-darkred">requires authentication</small>
 </p>
 
 
@@ -781,13 +839,14 @@ fetch(url, {
 <div class="bash-example">
     <pre><code class="language-bash">curl --request PATCH \
     "https://proxy.nekkoy.pp.ua/api/v1/proxy/users/1" \
+    --header "Authorization: Bearer {YOUR_AUTH_KEY}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
     --data "{
-    \"name\": \"quidem\",
-    \"update_date\": \"cum\",
-    \"production_url\": \"architecto\",
-    \"testing_url\": \"aut\"
+    \"name\": \"ut\",
+    \"update_date\": \"enim\",
+    \"production_url\": \"fugit\",
+    \"testing_url\": \"libero\"
 }"
 </code></pre></div>
 
@@ -798,15 +857,16 @@ fetch(url, {
 );
 
 const headers = {
+    "Authorization": "Bearer {YOUR_AUTH_KEY}",
     "Content-Type": "application/json",
     "Accept": "application/json",
 };
 
 let body = {
-    "name": "quidem",
-    "update_date": "cum",
-    "production_url": "architecto",
-    "testing_url": "aut"
+    "name": "ut",
+    "update_date": "enim",
+    "production_url": "fugit",
+    "testing_url": "libero"
 };
 
 fetch(url, {
@@ -856,10 +916,10 @@ fetch(url, {
 </span>
 <form id="form-PATCHapi-v1-proxy-users--id-" data-method="PATCH"
       data-path="api/v1/proxy/users/{id}"
-      data-authed="0"
+      data-authed="1"
       data-hasfiles="0"
       data-isarraybody="0"
-      data-headers='{"Content-Type":"application\/json","Accept":"application\/json"}'
+      data-headers='{"Authorization":"Bearer {YOUR_AUTH_KEY}","Content-Type":"application\/json","Accept":"application\/json"}'
       autocomplete="off"
       onsubmit="event.preventDefault(); executeTryOut('PATCHapi-v1-proxy-users--id-', this);">
     <h3>
@@ -869,7 +929,15 @@ fetch(url, {
             <small class="badge badge-purple">PATCH</small>
             <b><code>api/v1/proxy/users/{id}</code></b>
         </p>
-                    <h4 class="fancy-heading-panel"><b>URL Parameters</b></h4>
+                <p>
+            <label id="auth-PATCHapi-v1-proxy-users--id-" hidden>Authorization header:
+                <b><code>Bearer </code></b><input type="text"
+                                                                name="Authorization"
+                                                                data-prefix="Bearer "
+                                                                data-endpoint="PATCHapi-v1-proxy-users--id-"
+                                                                data-component="header"></label>
+        </p>
+                <h4 class="fancy-heading-panel"><b>URL Parameters</b></h4>
                     <p>
                 <b><code>id</code></b>&nbsp;&nbsp;<small>integer</small>  &nbsp;
                 <input type="number"
@@ -886,7 +954,7 @@ fetch(url, {
                 <input type="text"
                name="name"
                data-endpoint="PATCHapi-v1-proxy-users--id-"
-               value="quidem"
+               value="ut"
                data-component="body" hidden>
     <br>
 <p>Имя клиента</p>
@@ -896,7 +964,7 @@ fetch(url, {
                 <input type="text"
                name="update_date"
                data-endpoint="PATCHapi-v1-proxy-users--id-"
-               value="cum"
+               value="enim"
                data-component="body" hidden>
     <br>
 <p>дата обновлений из ACR системы</p>
@@ -906,7 +974,7 @@ fetch(url, {
                 <input type="text"
                name="production_url"
                data-endpoint="PATCHapi-v1-proxy-users--id-"
-               value="architecto"
+               value="fugit"
                data-component="body" hidden>
     <br>
 <p>URL callback для production</p>
@@ -916,7 +984,7 @@ fetch(url, {
                 <input type="text"
                name="testing_url"
                data-endpoint="PATCHapi-v1-proxy-users--id-"
-               value="aut"
+               value="libero"
                data-component="body" hidden>
     <br>
 <p>URL callback для тестирования</p>
@@ -926,6 +994,7 @@ fetch(url, {
             <h2 id="proxy-users-POSTapi-v1-proxy-users">Создать прокси пользователя</h2>
 
 <p>
+<small class="badge badge-darkred">requires authentication</small>
 </p>
 
 
@@ -937,14 +1006,15 @@ fetch(url, {
 <div class="bash-example">
     <pre><code class="language-bash">curl --request POST \
     "https://proxy.nekkoy.pp.ua/api/v1/proxy/users" \
+    --header "Authorization: Bearer {YOUR_AUTH_KEY}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
     --data "{
-    \"id\": 9,
-    \"name\": \"temporibus\",
+    \"id\": 7,
+    \"name\": \"veritatis\",
     \"update_date\": \"2023-12-31\",
-    \"production_url\": \"quidem\",
-    \"testing_url\": \"ut\"
+    \"production_url\": \"ut\",
+    \"testing_url\": \"quo\"
 }"
 </code></pre></div>
 
@@ -955,16 +1025,17 @@ fetch(url, {
 );
 
 const headers = {
+    "Authorization": "Bearer {YOUR_AUTH_KEY}",
     "Content-Type": "application/json",
     "Accept": "application/json",
 };
 
 let body = {
-    "id": 9,
-    "name": "temporibus",
+    "id": 7,
+    "name": "veritatis",
     "update_date": "2023-12-31",
-    "production_url": "quidem",
-    "testing_url": "ut"
+    "production_url": "ut",
+    "testing_url": "quo"
 };
 
 fetch(url, {
@@ -1014,10 +1085,10 @@ fetch(url, {
 </span>
 <form id="form-POSTapi-v1-proxy-users" data-method="POST"
       data-path="api/v1/proxy/users"
-      data-authed="0"
+      data-authed="1"
       data-hasfiles="0"
       data-isarraybody="0"
-      data-headers='{"Content-Type":"application\/json","Accept":"application\/json"}'
+      data-headers='{"Authorization":"Bearer {YOUR_AUTH_KEY}","Content-Type":"application\/json","Accept":"application\/json"}'
       autocomplete="off"
       onsubmit="event.preventDefault(); executeTryOut('POSTapi-v1-proxy-users', this);">
     <h3>
@@ -1027,13 +1098,21 @@ fetch(url, {
             <small class="badge badge-black">POST</small>
             <b><code>api/v1/proxy/users</code></b>
         </p>
-                            <h4 class="fancy-heading-panel"><b>Body Parameters</b></h4>
+                <p>
+            <label id="auth-POSTapi-v1-proxy-users" hidden>Authorization header:
+                <b><code>Bearer </code></b><input type="text"
+                                                                name="Authorization"
+                                                                data-prefix="Bearer "
+                                                                data-endpoint="POSTapi-v1-proxy-users"
+                                                                data-component="header"></label>
+        </p>
+                        <h4 class="fancy-heading-panel"><b>Body Parameters</b></h4>
         <p>
             <b><code>id</code></b>&nbsp;&nbsp;<small>integer</small>  &nbsp;
                 <input type="number"
                name="id"
                data-endpoint="POSTapi-v1-proxy-users"
-               value="9"
+               value="7"
                data-component="body" hidden>
     <br>
 <p>ИД прокси пользователя из ACR системы</p>
@@ -1043,7 +1122,7 @@ fetch(url, {
                 <input type="text"
                name="name"
                data-endpoint="POSTapi-v1-proxy-users"
-               value="temporibus"
+               value="veritatis"
                data-component="body" hidden>
     <br>
 <p>Имя клиента</p>
@@ -1063,7 +1142,7 @@ fetch(url, {
                 <input type="text"
                name="production_url"
                data-endpoint="POSTapi-v1-proxy-users"
-               value="quidem"
+               value="ut"
                data-component="body" hidden>
     <br>
 <p>URL callback для production</p>
@@ -1073,7 +1152,7 @@ fetch(url, {
                 <input type="text"
                name="testing_url"
                data-endpoint="POSTapi-v1-proxy-users"
-               value="ut"
+               value="quo"
                data-component="body" hidden>
     <br>
 <p>URL callback для тестирования</p>

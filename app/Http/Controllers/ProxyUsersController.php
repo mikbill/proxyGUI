@@ -14,6 +14,7 @@ use Illuminate\Http\JsonResponse;
  * Class Users
  * @package App\Http\Controllers\Proxy
  * @group Proxy Users
+ * @authenticated
  */
 class ProxyUsersController extends Controller
 {

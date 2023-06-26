@@ -12,6 +12,7 @@ use App\Http\Resources\ProxyUsersResource;
  * Class UserController
  * @package App\Http\Controllers
  * @group Profile
+ * @authenticated
  */
 class UserController extends Controller
 {
