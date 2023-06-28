@@ -1,13 +1,18 @@
 require('./bootstrap');
 
-import React from 'react';
+import React, {createContext} from 'react';
 import ReactDOM from 'react-dom';
+import UserStore from "./store/UserStore";
 
 import App from "./App";
 
+export const Context = createContext(null)
+
 ReactDOM.render(
-    <React.StrictMode>
+    <Context.Provider value={{
+        auth: new UserStore()
+    }}>
         <App />
-    </React.StrictMode> ,
+    </Context.Provider> ,
     document.getElementById('root')
 );

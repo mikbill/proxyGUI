@@ -1,10 +1,11 @@
 import React from 'react';
+import {Container} from "react-bootstrap";
 
 const Layout =({children}) =>{
     return(
-        <div className="container">
+        <Container className='mt-4'>
             {children}
-        </div>
+        </Container>
     )
 }
 
