@@ -1,5 +1,5 @@
 import React, {useContext, useState} from 'react';
-import {login} from "../http/userAPI";
+import {login, profile} from "../http/userAPI";
 import {Button, Card, Form, Col} from "react-bootstrap";
 import {useNavigate} from "react-router-dom";
 import {ADMIN_ROUTE} from "../utils/consts";
@@ -29,6 +29,9 @@ const Login = observer( () => {
     const click = async () => {
         try {
             await login(name, password)
+            // profile().then(data => {
+            //     auth.setUser(data.data.name)
+            // })
             auth.setIsAuth(true)
             navigate(ADMIN_ROUTE)
         } catch (e) {
@@ -83,7 +86,6 @@ const Login = observer( () => {
                     </Card.Body>
                 </Card>
             </Col>
-
         </div>
     );
 })

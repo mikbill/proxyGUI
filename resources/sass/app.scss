@@ -6,3 +6,11 @@
 
 // Bootstrap
 @import '~bootstrap/scss/bootstrap';
+
+.table-selection > :not(caption) > * > * {
+    background-color: transparent;
+}
+
+.table-selection .select-color {
+    background-color: rgba(red, 0.2);
+}
