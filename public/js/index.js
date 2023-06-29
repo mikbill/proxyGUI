@@ -11506,50 +11506,63 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/dist/index.js");
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router/dist/index.js");
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/dist/index.js");
 /* harmony import */ var _utils_consts__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../utils/consts */ "./resources/js/utils/consts.js");
-/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Navbar.js");
-/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Container.js");
-/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Nav.js");
-/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Navbar.js");
+/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Container.js");
+/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Nav.js");
+/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Button.js");
+/* harmony import */ var _index__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../index */ "./resources/js/index.js");
+/* harmony import */ var mobx_react_lite__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! mobx-react-lite */ "./node_modules/mobx-react-lite/es/index.js");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
 
 
 
 
 
 
-function Header() {
-  //const navigate = useNavigate();
+
+
+var Header = (0,mobx_react_lite__WEBPACK_IMPORTED_MODULE_3__.observer)(function () {
+  var _useContext = (0,react__WEBPACK_IMPORTED_MODULE_0__.useContext)(_index__WEBPACK_IMPORTED_MODULE_2__.Context),
+    auth = _useContext.auth;
+  var navigate = (0,react_router_dom__WEBPACK_IMPORTED_MODULE_5__.useNavigate)();
   var pageLinks = [{
     "name": "Home",
     "url": _utils_consts__WEBPACK_IMPORTED_MODULE_1__.HOME_ROUTE
   }, {
-    "name": "Login",
-    "url": _utils_consts__WEBPACK_IMPORTED_MODULE_1__.LOGIN_ROUTE
-  }, {
     "name": "AdminPanel",
     "url": _utils_consts__WEBPACK_IMPORTED_MODULE_1__.ADMIN_ROUTE
+  }, {
+    "name": "Profile",
+    "url": _utils_consts__WEBPACK_IMPORTED_MODULE_1__.PROFILE_ROUTE
   }];
-  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(react_bootstrap__WEBPACK_IMPORTED_MODULE_3__["default"], {
+  var logout = function logout() {
+    auth.setIsAuth(false);
+    localStorage.removeItem('token');
+    navigate(_utils_consts__WEBPACK_IMPORTED_MODULE_1__.LOGIN_ROUTE);
+  };
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(react_bootstrap__WEBPACK_IMPORTED_MODULE_6__["default"], {
     bg: "dark",
     "data-bs-theme": "dark",
-    expand: "lg",
+    expand: "md",
     className: "bg-body-tertiary",
-    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)(react_bootstrap__WEBPACK_IMPORTED_MODULE_4__["default"], {
-      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(react_bootstrap__WEBPACK_IMPORTED_MODULE_3__["default"].Brand, {
-        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_5__.NavLink, {
+    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)(react_bootstrap__WEBPACK_IMPORTED_MODULE_7__["default"], {
+      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(react_bootstrap__WEBPACK_IMPORTED_MODULE_6__["default"].Brand, {
+        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_8__.NavLink, {
           to: _utils_consts__WEBPACK_IMPORTED_MODULE_1__.HOME_ROUTE,
           className: "navbar-brand",
           children: "LOGO"
         })
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(react_bootstrap__WEBPACK_IMPORTED_MODULE_3__["default"].Toggle, {
+      }), auth.isAuth && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(react_bootstrap__WEBPACK_IMPORTED_MODULE_6__["default"].Toggle, {
         "aria-controls": "navbar-nav"
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(react_bootstrap__WEBPACK_IMPORTED_MODULE_3__["default"].Collapse, {
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)(react_bootstrap__WEBPACK_IMPORTED_MODULE_6__["default"].Collapse, {
         id: "navbar-nav",
-        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(react_bootstrap__WEBPACK_IMPORTED_MODULE_6__["default"], {
+        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(react_bootstrap__WEBPACK_IMPORTED_MODULE_9__["default"], {
           className: "me-auto",
-          children: pageLinks.map(function (page, key) {
-            return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_5__.NavLink, {
+          children: auth.isAuth && pageLinks.map(function (page, key) {
+            return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(react_router_dom__WEBPACK_IMPORTED_MODULE_8__.NavLink, {
               to: page.url
               // поменять стили
               ,
@@ -11563,12 +11576,23 @@ function Header() {
               children: page.name
             }, page.url);
           })
-        })
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(react_bootstrap__WEBPACK_IMPORTED_MODULE_9__["default"], {
+          children: auth.isAuth ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(react_bootstrap__WEBPACK_IMPORTED_MODULE_10__["default"], {
+            variant: "outline-light",
+            onClick: logout,
+            children: "Logout"
+          }) : /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(react_bootstrap__WEBPACK_IMPORTED_MODULE_10__["default"], {
+            variant: "outline-light",
+            onClick: function onClick() {
+              return navigate(_utils_consts__WEBPACK_IMPORTED_MODULE_1__.LOGIN_ROUTE);
+            },
+            children: "Login"
+          })
+        })]
       })]
     })
   });
-}
-;
+});
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Header);
 
 /***/ }),
@@ -11995,6 +12019,33 @@ function NotFound() {
 
 /***/ }),
 
+/***/ "./resources/js/pages/Profile.jsx":
+/*!****************************************!*\
+  !*** ./resources/js/pages/Profile.jsx ***!
+  \****************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+
+
+var Profile = function Profile() {
+  (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {}, []);
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {
+    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("h2", {
+      children: "Profile"
+    })
+  });
+};
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Profile);
+
+/***/ }),
+
 /***/ "./resources/js/routes.js":
 /*!********************************!*\
   !*** ./resources/js/routes.js ***!
@@ -12012,6 +12063,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _pages_Login__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./pages/Login */ "./resources/js/pages/Login.jsx");
 /* harmony import */ var _pages_AdminPanel__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./pages/AdminPanel */ "./resources/js/pages/AdminPanel.jsx");
 /* harmony import */ var _pages_NotFound__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./pages/NotFound */ "./resources/js/pages/NotFound.jsx");
+/* harmony import */ var _pages_Profile__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./pages/Profile */ "./resources/js/pages/Profile.jsx");
+
 
 
 
@@ -12020,6 +12073,9 @@ __webpack_require__.r(__webpack_exports__);
 var authRoutes = [{
   path: _utils_consts__WEBPACK_IMPORTED_MODULE_0__.ADMIN_ROUTE,
   Component: _pages_AdminPanel__WEBPACK_IMPORTED_MODULE_3__["default"]
+}, {
+  path: _utils_consts__WEBPACK_IMPORTED_MODULE_0__.PROFILE_ROUTE,
+  Component: _pages_Profile__WEBPACK_IMPORTED_MODULE_5__["default"]
 }];
 var publicRoutes = [{
   path: _utils_consts__WEBPACK_IMPORTED_MODULE_0__.HOME_ROUTE,
@@ -12088,12 +12144,14 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   ADMIN_ROUTE: () => (/* binding */ ADMIN_ROUTE),
 /* harmony export */   HOME_ROUTE: () => (/* binding */ HOME_ROUTE),
 /* harmony export */   LOGIN_ROUTE: () => (/* binding */ LOGIN_ROUTE),
-/* harmony export */   NOT_FOUND_ROUTE: () => (/* binding */ NOT_FOUND_ROUTE)
+/* harmony export */   NOT_FOUND_ROUTE: () => (/* binding */ NOT_FOUND_ROUTE),
+/* harmony export */   PROFILE_ROUTE: () => (/* binding */ PROFILE_ROUTE)
 /* harmony export */ });
 var HOME_ROUTE = '/';
 var LOGIN_ROUTE = '/login';
 var ADMIN_ROUTE = '/admin';
 var NOT_FOUND_ROUTE = '/error';
+var PROFILE_ROUTE = '/profile';
 
 /***/ }),
 
