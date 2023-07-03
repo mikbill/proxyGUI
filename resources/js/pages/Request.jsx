@@ -1,15 +1,20 @@
 import React, {useEffect, useState} from 'react';
-import {fetchRequests} from "../http/requestAPI";
+import {fetchOneRequest, fetchRequests} from "../http/requestAPI";
 import {Pagination, Table} from "react-bootstrap";
 import Pages from "../components/Pages";
 import {observer} from "mobx-react-lite";
+import ModalRequest from "../components/ModalRequest";
 
 const Request = observer(() => {
     const [requests, setRequests] = useState([])
+
     const [currentPage, setCurrentPage] = useState(1)
     const [totalPage, setTotalPage] = useState(1)
     const pages = []
     const gap = 3
+
+    const [requestVisible, setRequestVisible] = useState(false)
+    const [requestInfo, setRequestInfo] = useState({})
 
     for (let i = 0; i < totalPage; i++) {
         pages.push(i + 1)
@@ -31,6 +36,17 @@ const Request = observer(() => {
         })
     }, [currentPage])
 
+    const requestProp = (id) => {
+        fetchOneRequest(id).then(r => {
+            setRequestInfo(r.data.data)
+            console.log(r.data.data)
+        })
+    }
+    const closeModal = () => {
+        setRequestVisible(false)
+        setRequestInfo({})
+    }
+
     return (
         <div>
             <h1>Requests</h1>
@@ -51,6 +67,10 @@ const Request = observer(() => {
                     return <tr
                         key={r.id}
                         className={code ? 'select-color' : ''}
+                        onClick={() => {
+                            requestProp(r.id)
+                            setRequestVisible(true)
+                        }}
                     >
                         <td>{r.clientID}</td>
                         <td>{r.msisdn}</td>
@@ -61,6 +81,11 @@ const Request = observer(() => {
                 })}
                 </tbody>
             </Table>
+            <ModalRequest
+                show={requestVisible}
+                onHide={closeModal}
+                reqInfo={requestInfo}
+            />
 
             <Pages
                 currentPage={currentPage}
