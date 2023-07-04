@@ -1,9 +1,11 @@
 import React, {useEffect, useState} from 'react';
 import {fetchOneRequest, fetchRequests} from "../http/requestAPI";
-import {Pagination, Table} from "react-bootstrap";
+import {FormGroup, Form, Button, InputGroup, Col} from "react-bootstrap";
 import Pages from "../components/Pages";
 import {observer} from "mobx-react-lite";
 import ModalRequest from "../components/ModalRequest";
+import RequestsList from "../components/RequestsList";
+import RequestSort from "../components/RequestSort";
 
 const Request = observer(() => {
     const [requests, setRequests] = useState([])
@@ -36,7 +38,7 @@ const Request = observer(() => {
         })
     }, [currentPage])
 
-    const requestProp = (id) => {
+    const requestData = (id) => {
         fetchOneRequest(id).then(r => {
             setRequestInfo(r.data.data)
             console.log(r.data.data)
@@ -47,40 +49,29 @@ const Request = observer(() => {
         setRequestInfo({})
     }
 
+    const sortRequests = (clientID, msisdn) => {
+        fetchRequests(1, clientID, msisdn ).then(r => {
+            setRequests(r.data.data)
+            setTotalPage(r.data.meta.last_page)
+            console.log(r.data)
+        })
+    }
+
     return (
         <div>
             <h1>Requests</h1>
-            <Table hover className="table-selection">
-                <thead>
-                <tr>
-                    <th>clientID</th>
-                    <th>msisdn</th>
-                    <th>operationName</th>
-                    <th>Request</th>
-                    <th>Response</th>
-                </tr>
-                </thead>
-                <tbody>
-                {requests.map((r) => {
-                    const code = !((r.requestCode || r.responseCode) == 0)
-                    //console.log(code)
-                    return <tr
-                        key={r.id}
-                        className={code ? 'select-color' : ''}
-                        onClick={() => {
-                            requestProp(r.id)
-                            setRequestVisible(true)
-                        }}
-                    >
-                        <td>{r.clientID}</td>
-                        <td>{r.msisdn}</td>
-                        <td>{r.operationName}</td>
-                        <td>{r.requestCode}</td>
-                        <td>{r.responseCode}</td>
-                    </tr>
-                })}
-                </tbody>
-            </Table>
+            <Col md={{span: 8, offset: 2}} lg={{span: 6, offset: 3}}>
+                <RequestSort
+                    className="mb-2"
+                    sort={sortRequests}
+                />
+            </Col>
+
+            <RequestsList
+                requests={requests}
+                modalVisible={() => setRequestVisible(true)}
+                requestData={requestData}
+            />
             <ModalRequest
                 show={requestVisible}
                 onHide={closeModal}

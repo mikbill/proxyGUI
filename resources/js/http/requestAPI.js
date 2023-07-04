@@ -1,8 +1,8 @@
 import {$authHost} from "./index";
 
 
-export const fetchRequests = async (page) => {
-    const data = $authHost.get('/api/v1/proxy/requests'+'?page='+page)
+export const fetchRequests = async (page=1, clientID='', msisdn='') => {
+    const data = $authHost.get('/api/v1/proxy/requests'+'?page='+page, {params: {clientID, msisdn}})
     return data
 }
 
