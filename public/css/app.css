@@ -11982,3 +11982,10 @@ textarea.form-control-lg {
     display: none !important;
   }
 }
+.table-selection > :not(caption) > * > * {
+  background-color: transparent;
+}
+
+.table-selection .select-color {
+  background-color: rgba(255, 0, 0, 0.2);
+}

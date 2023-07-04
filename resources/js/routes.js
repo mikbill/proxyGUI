@@ -1,22 +1,17 @@
-import {ADMIN_ROUTE, HOME_ROUTE, LOGIN_ROUTE, NOT_FOUND_ROUTE} from "./utils/consts";
+import {LOGIN_ROUTE, NOT_FOUND_ROUTE, REQUEST_ROUTE} from "./utils/consts";
 
-import Home from "./pages/Home";
 import Login from "./pages/Login";
-import AdminPanel from "./pages/AdminPanel";
 import NotFound from "./pages/NotFound";
+import Request from "./pages/Request";
 
 export const authRoutes = [
     {
-        path: ADMIN_ROUTE,
-        Component: AdminPanel
-    }
+        path: REQUEST_ROUTE,
+        Component: Request
+    },
 ]
 
 export const publicRoutes = [
-    {
-        path: HOME_ROUTE,
-        Component: Home
-    },
     {
         path: LOGIN_ROUTE,
         Component: Login

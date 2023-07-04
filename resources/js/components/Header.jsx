@@ -1,53 +1,75 @@
-import React from 'react';
+import React, {useContext, useState} from 'react';
 import {NavLink, useNavigate} from "react-router-dom";
-import {ADMIN_ROUTE, HOME_ROUTE, LOGIN_ROUTE} from "../utils/consts";
+import {LOGIN_ROUTE, REQUEST_ROUTE} from "../utils/consts";
+import {Button, Container, Nav, Navbar} from "react-bootstrap";
+import {Context} from "../index";
+import {observer} from "mobx-react-lite";
 
-function Header() {
-    //const navigate = useNavigate();
+const Header = observer(() => {
+    const {auth} = useContext(Context)
+    const navigate = useNavigate();
     const pageLinks = [
         {
-            "name": "Home",
-            "url": HOME_ROUTE,
-        },
-        {
-            "name": "Login",
-            "url": LOGIN_ROUTE,
-        },
-        {
-            "name": "AdminPanel",
-            "url": ADMIN_ROUTE,
+            "name": "Request",
+            "url": REQUEST_ROUTE,
         },
     ];
 
-    return (
-        <nav className="navbar navbar-expand-lg">
-            <NavLink to={HOME_ROUTE} className="navbar-brand">LOGO</NavLink>
-            <button className="navbar-toggler" type="button" data-bs-toggle="collapse"
-                    data-bs-target="#navbarContent" aria-controls="navbarContent"
-                    aria-expanded="false" aria-label="Переключатель навигации">
-                <span className="navbar-toggler-icon"></span>
-            </button>
+    const logout = () => {
+        auth.setIsAuth(false)
+        auth.setUser('')
+        localStorage.removeItem('token')
+        navigate(LOGIN_ROUTE)
+    }
 
-            <div className="collapse navbar-collapse" id="navbarContent">
-                <ul className="navbar-nav mr-auto">
-                    {pageLinks.map((page, key) => {
-                        return (
-                            <li key={key} className={`nav-item `}>
-                                <NavLink
-                                    to={page.url}
-                                    // поменять стили
-                                    style={({isActive}) => ({color: isActive ? 'red' : ''})}
-                                    className={'nav-link'}
+    return (
+        <Navbar bg="dark" data-bs-theme="dark" expand="md" className="bg-body-tertiary">
+            {auth.isAuth ?
+                <Container>
+                    <Navbar.Toggle aria-controls="navbar-nav"/>
+                    <Navbar.Collapse id="navbar-nav" className="mt-2 mb-2">
+                        <Nav className="me-auto">
+                            {auth.isAuth && pageLinks.map((page, key) => {
+                                return (
+                                    <NavLink
+                                        key={page.url}
+                                        to={page.url}
+                                        // поменять стили
+                                        style={({isActive}) => ({color: isActive ? 'red' : ''})}
+                                        className={'nav-link'}
+                                    >
+                                        {page.name}
+                                    </NavLink>
+                                )
+                            })}
+                        </Nav>
+                        <Nav>
+                            <div>
+                                <Navbar.Text
+                                    className="me-4"
+                                >{auth.user}</Navbar.Text>
+                                <Button
+                                    variant="outline-light"
+                                    onClick={logout}
                                 >
-                                    {page.name}
-                                </NavLink>
-                            </li>
-                        )
-                    })}
-                </ul>
-            </div>
-        </nav>
+                                    Logout
+                                </Button>
+                            </div>
+                        </Nav>
+                    </Navbar.Collapse>
+                </Container>
+                :
+                <Container className="justify-content-end">
+                    <Button
+                        variant="outline-light"
+                        onClick={() => navigate(LOGIN_ROUTE)}
+                    >
+                        Login
+                    </Button>
+                </Container>
+            }
+        </Navbar>
     );
-};
+});
 
 export default Header;
