@@ -22,7 +22,7 @@ class ProxyRequestFactory extends Factory
 
         return [
             "clientID" => ProxyClient::all()->random()->id,
-            "msisdn" => $this->faker->phoneNumber(),
+            "msisdn" => random_int(380000000000, 380999999999),
             "operationName" => Arr::random($operations),
             "lifecellCode" => rand(-10, 0),
             "lifecellDescription" => "",
