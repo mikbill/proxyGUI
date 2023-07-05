@@ -16,7 +16,7 @@ const RequestsList = ({requests, modalVisible, requestData}) => {
             <tbody>
             {requests.map((r) => {
                 const code = !((r.requestCode || r.responseCode) == 0)
-                //console.log(code)
+
                 return <tr
                     key={r.id}
                     className={code ? 'select-color' : ''}

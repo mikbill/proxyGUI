@@ -22,26 +22,23 @@ const Request = observer(() => {
         pages.push(i + 1)
     }
 
-    useEffect(() => {
-        fetchRequests().then(r => {
-            setRequests(r.data.data)
-            setTotalPage(r.data.meta.last_page)
-            console.log(r.data)
-        })
-    }, [])
+    // useEffect(() => {
+    //     fetchRequests().then(r => {
+    //         setRequests(r.data.data)
+    //         setTotalPage(r.data.meta.last_page)
+    //     })
+    // }, [])
 
     useEffect(() => {
         fetchRequests(currentPage).then(r => {
             setRequests(r.data.data)
             setTotalPage(r.data.meta.last_page)
-            console.log(r.data)
         })
     }, [currentPage])
 
     const requestData = (id) => {
         fetchOneRequest(id).then(r => {
             setRequestInfo(r.data.data)
-            console.log(r.data.data)
         })
     }
     const closeModal = () => {
@@ -53,7 +50,6 @@ const Request = observer(() => {
         fetchRequests(1, clientID, msisdn ).then(r => {
             setRequests(r.data.data)
             setTotalPage(r.data.meta.last_page)
-            console.log(r.data)
         })
     }
 

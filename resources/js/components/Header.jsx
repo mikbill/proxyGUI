@@ -1,6 +1,6 @@
 import React, {useContext, useState} from 'react';
 import {NavLink, useNavigate} from "react-router-dom";
-import {LOGIN_ROUTE, REQUEST_ROUTE} from "../utils/consts";
+import {LOGIN_ROUTE, REQUEST_ROUTE, USERS_ROUTE} from "../utils/consts";
 import {Button, Container, Nav, Navbar} from "react-bootstrap";
 import {Context} from "../index";
 import {observer} from "mobx-react-lite";
@@ -12,6 +12,10 @@ const Header = observer(() => {
         {
             "name": "Request",
             "url": REQUEST_ROUTE,
+        },
+        {
+            "name": "Users",
+            "url": USERS_ROUTE,
         },
     ];
 
