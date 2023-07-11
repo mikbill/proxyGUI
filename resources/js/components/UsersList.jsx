@@ -1,7 +1,10 @@
 import React from 'react';
 import {Table} from "react-bootstrap";
+import {USERS_ROUTE} from "../utils/consts";
+import {useNavigate} from "react-router-dom";
 
-const UsersList = ({users, modalVisible, userData}) => {
+const UsersList = ({users}) => {
+    const navigate = useNavigate()
     return (
         <Table hover className="table-selection">
             <thead>
@@ -18,8 +21,7 @@ const UsersList = ({users, modalVisible, userData}) => {
                 return <tr
                     key={r.id}
                     onClick={() => {
-                        userData(r.id)
-                        modalVisible()
+                        navigate(USERS_ROUTE + '/' + r.id)
                     }}
                 >
                     <td>{r.id}</td>

@@ -1,48 +1,33 @@
 import React, {useEffect, useState} from 'react';
-import {Table} from "react-bootstrap";
-import {fetchOneUser, fetchUsers} from "../http/usersAPI";
+import {fetchUsers} from "../http/usersAPI";
 import UsersList from "../components/UsersList";
-import ModalUser from "../components/ModalUser";
-import ModalRequest from "../components/ModalRequest";
+import {useFetching} from "../hooks/useFetching";
+import {Spinner} from "react-bootstrap";
 
 const Users = () => {
     const [users, setUsers] = useState([])
 
-    const [userVisible, setUserVisible] = useState(false)
-    const [userInfo, setUserInfo] = useState({})
+    const [fetchUsersList, isLoading, error] = useFetching(async () => {
+        const response = await fetchUsers()
+        setUsers(response.data.data)
+        console.log(response)
+    })
 
     useEffect(() => {
-        fetchUsers().then(r => {
-            setUsers(r.data.data)
-            console.log(r.data.data)
-        })
+        fetchUsersList()
     }, [])
-
-    const userData = (id) => {
-        fetchOneUser(id).then(r => {
-            setUserInfo(r.data.data)
-            console.log(r.data)
-        })
-    }
-
-    const closeModal = () => {
-        setUserVisible(false)
-        setUserInfo({})
-    }
 
     return (
         <div>
             <h1>Users</h1>
-            <UsersList
-                users={users}
-                userData={userData}
-                modalVisible={() => setUserVisible(true)}
-            />
-            <ModalUser
-                show={userVisible}
-                onHide={closeModal}
-                userInfo={userInfo}
-            />
+            {isLoading
+                ?
+                <div className='d-flex justify-content-center align-items-center'>
+                    <Spinner animation="border"/>
+                </div>
+                : <UsersList users={users}/>
+            }
+
         </div>
     );
 };

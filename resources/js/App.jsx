@@ -9,21 +9,27 @@ import AppRouter from "./components/AppRouter";
 import {profile} from "./http/userAPI";
 
 import {Spinner} from "react-bootstrap";
+import {useFetching} from "./hooks/useFetching";
 
 const App = observer(() => {
     const {auth} = useContext(Context)
-    const [loading, setLoading] = useState(true)
+    //const [loading, setLoading] = useState(true)
+
+    const [fetchProfile, isLoading, error] = useFetching(async () => {
+        const response = await profile()
+        auth.setIsAuth(true)
+        auth.setUser(response.data.name)
+    })
 
     useEffect(() => {
-        // if (localStorage.getItem('token'))
+        fetchProfile()
+        // profile().then(data => {
         //     auth.setIsAuth(true)
-        profile().then(data => {
-            auth.setIsAuth(true)
-            auth.setUser(data.data.name)
-        }).finally(() => setLoading(false))
+        //     auth.setUser(data.data.name)
+        // }).finally(() => setLoading(false))
     }, [])
 
-    if (loading) {
+    if (isLoading) {
         return <div style={{height: '100vh'}}
             className='d-flex justify-content-center align-items-center'>
             <Spinner animation="border"/>

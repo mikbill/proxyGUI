@@ -4,6 +4,7 @@ import Login from "./pages/Login";
 import NotFound from "./pages/NotFound";
 import Request from "./pages/Request";
 import Users from "./pages/Users";
+import UserPage from "./pages/UserPage";
 
 export const authRoutes = [
     {
@@ -13,6 +14,10 @@ export const authRoutes = [
     {
         path: USERS_ROUTE,
         Component: Users
+    },
+    {
+        path: USERS_ROUTE + '/:id',
+        Component: UserPage
     },
 ]
 
