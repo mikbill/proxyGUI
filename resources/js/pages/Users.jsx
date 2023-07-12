@@ -25,7 +25,11 @@ const Users = () => {
                 <div className='d-flex justify-content-center align-items-center'>
                     <Spinner animation="border"/>
                 </div>
-                : <UsersList users={users}/>
+                :
+                <>
+                    <UsersList users={users}/>
+                </>
+
             }
 
         </div>
