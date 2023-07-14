@@ -4,6 +4,7 @@ import {editUser, fetchOneUser} from "../http/usersAPI";
 import {useFetching} from "../hooks/useFetching";
 import {Alert, Spinner} from "react-bootstrap";
 import EditUserForm from "../components/EditUserForm";
+import {USERS_ROUTE} from "../utils/consts";
 
 const EditUserPage = () => {
     const {id} = useParams()
@@ -29,7 +30,7 @@ const EditUserPage = () => {
         if (res.status === 200) {
             setTimeout(() => {
                 setAlertVisible(false)
-                //navigate(USERS_ROUTE)
+                navigate(USERS_ROUTE)
             }, 1000)
         }
     }

@@ -1,6 +1,6 @@
 import {$authHost} from "./index";
 
-const usersURL = '/proxy/users/'
+const usersURL = '/proxy/users'
 
 export const fetchUsers = async () => {
     const data = $authHost.get(usersURL)
@@ -8,12 +8,12 @@ export const fetchUsers = async () => {
 }
 
 export const fetchOneUser = async (id) => {
-    const data = $authHost.get(usersURL + id)
+    const data = $authHost.get(usersURL + '/' + id)
     return data
 }
 
 export const editUser = async (id, body) => {
-    const data = $authHost.patch(usersURL + id, body)
+    const data = $authHost.patch(usersURL + '/' + id, body)
     return data
 }
 

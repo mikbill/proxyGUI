@@ -39,7 +39,7 @@ const Header = observer(() => {
                                         key={page.url}
                                         to={page.url}
                                         // поменять стили
-                                        style={({isActive}) => ({color: isActive ? 'red' : ''})}
+                                        style={({isActive}) => ({borderBottom: isActive ? '1px solid white' : 'none'})}
                                         className={'nav-link'}
                                     >
                                         {page.name}

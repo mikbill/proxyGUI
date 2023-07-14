@@ -29,9 +29,6 @@ const Login = observer( () => {
     const click = async () => {
         try {
             await login(name, password)
-            // profile().then(data => {
-            //     auth.setUser(data.data.name)
-            // })
             auth.setIsAuth(true)
             navigate(REQUESTS_ROUTE)
         } catch (e) {
