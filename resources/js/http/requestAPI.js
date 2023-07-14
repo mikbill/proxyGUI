@@ -1,12 +1,13 @@
 import {$authHost} from "./index";
-import {REQUESTS_ROUTE} from "../utils/consts";
+
+const requestsURL = '/proxy/requests'
 
 export const fetchRequests = async (page=1, clientID='', msisdn='') => {
-    const data = $authHost.get(REQUESTS_ROUTE + '?page='+page, {params: {clientID, msisdn}})
+    const data = $authHost.get(requestsURL + '?page='+page, {params: {clientID, msisdn}})
     return data
 }
 
 export const fetchOneRequest = async (id) => {
-    const data = $authHost.get(REQUESTS_ROUTE + '/' + id)
+    const data = $authHost.get(requestsURL + '/' + id)
     return data
 }

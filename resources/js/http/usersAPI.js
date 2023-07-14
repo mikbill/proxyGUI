@@ -1,22 +1,23 @@
 import {$authHost} from "./index";
-import {USERS_ROUTE} from "../utils/consts";
+
+const usersURL = '/proxy/users/'
 
 export const fetchUsers = async () => {
-    const data = $authHost.get(USERS_ROUTE)
+    const data = $authHost.get(usersURL)
     return data
 }
 
 export const fetchOneUser = async (id) => {
-    const data = $authHost.get(USERS_ROUTE + '/' + id)
+    const data = $authHost.get(usersURL + id)
     return data
 }
 
 export const editUser = async (id, body) => {
-    const data = $authHost.patch(USERS_ROUTE + '/' + id, body)
+    const data = $authHost.patch(usersURL + id, body)
     return data
 }
 
 export const createUser = async (body) => {
-    const data = $authHost.post(USERS_ROUTE, body)
+    const data = $authHost.post(usersURL, body)
     return data
 }
