@@ -16,22 +16,22 @@ const CreateUserForm = ({user, setUser, create}) => {
     };
 
     return (
-        <div>
-            <Form noValidate validated={validated} onSubmit={handleSubmit}>
-                <UserForm
-                    user={user}
-                    setUser={setUser}
-                />
-                <Button
-                    type="submit"
-                    onClick={() => {
-                        create()
-                    }}
-                >
-                    Сохранить
-                </Button>
-            </Form>
-        </div>
+
+        <Form noValidate validated={validated} onSubmit={handleSubmit}>
+            <UserForm
+                user={user}
+                setUser={setUser}
+            />
+            <Button
+                type="submit"
+                onClick={() => {
+                    create()
+                }}
+            >
+                Сохранить
+            </Button>
+        </Form>
+
     );
 };
 
