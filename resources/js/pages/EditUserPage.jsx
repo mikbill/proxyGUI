@@ -5,7 +5,7 @@ import {useFetching} from "../hooks/useFetching";
 import {Alert, Spinner} from "react-bootstrap";
 import EditUserForm from "../components/EditUserForm";
 
-const UserPage = () => {
+const EditUserPage = () => {
     const {id} = useParams()
     const navigate = useNavigate()
 
@@ -15,7 +15,7 @@ const UserPage = () => {
     const [fetchUserByID, isLoading, error] = useFetching(async (id) => {
         const response = await fetchOneUser(id)
         setUser(response.data.data)
-        console.log(response.data.data)
+        //console.log(response.data.data)
     })
 
     useEffect(() => {
@@ -61,4 +61,4 @@ const UserPage = () => {
     );
 };
 
-export default UserPage;
+export default EditUserPage;

@@ -2,15 +2,19 @@ import React, {useEffect, useState} from 'react';
 import {fetchUsers} from "../http/usersAPI";
 import UsersList from "../components/UsersList";
 import {useFetching} from "../hooks/useFetching";
-import {Spinner} from "react-bootstrap";
+import {Button, Spinner} from "react-bootstrap";
+import {useNavigate} from "react-router-dom";
+import {CREATE_USER_ROUTE} from "../utils/consts";
 
 const Users = () => {
     const [users, setUsers] = useState([])
 
+    const navigate = useNavigate()
+
     const [fetchUsersList, isLoading, error] = useFetching(async () => {
         const response = await fetchUsers()
         setUsers(response.data.data)
-        console.log(response)
+        //console.log(response)
     })
 
     useEffect(() => {
@@ -27,6 +31,12 @@ const Users = () => {
                 </div>
                 :
                 <>
+                    <Button
+                        variant="outline-secondary"
+                        onClick={() => {
+                            navigate(CREATE_USER_ROUTE)
+                        }}
+                    >Создать</Button>
                     <UsersList users={users}/>
                 </>
             }
