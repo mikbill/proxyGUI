@@ -29,7 +29,6 @@ const Users = () => {
                 <>
                     <UsersList users={users}/>
                 </>
-
             }
 
         </div>

@@ -4,7 +4,7 @@ import {authRoutes, publicRoutes} from "../routes";
 import NotFound from "../pages/NotFound";
 import {Context} from "../index";
 import {observer} from "mobx-react-lite";
-import {LOGIN_ROUTE, REQUEST_ROUTE} from "../utils/consts";
+import {LOGIN_ROUTE, REQUESTS_ROUTE} from "../utils/consts";
 
 const AppRouter = observer( () => {
     const {auth} = useContext(Context)
@@ -18,7 +18,7 @@ const AppRouter = observer( () => {
                 <Route key={path} path={path} element={<Component/>}/>
             )}
             {auth.isAuth ?
-                <Route path='/' element={<Navigate to={REQUEST_ROUTE} />}/>
+                <Route path='/' element={<Navigate to={REQUESTS_ROUTE} />}/>
                 :
                 <Route path='/' element={<Navigate to={LOGIN_ROUTE} />}/>
             }

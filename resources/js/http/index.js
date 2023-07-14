@@ -11,10 +11,12 @@ const headers = {
 
 const $host = axios.create({
     headers: headers,
+    baseURL: '/api/v1/proxy',
 })
 
 const $authHost = axios.create({
     headers: headers,
+    baseURL: '/api/v1/proxy',
 })
 
 const authInterceptor = config => {

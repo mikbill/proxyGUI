@@ -2,7 +2,7 @@ import React, {useContext, useState} from 'react';
 import {login} from "../http/userAPI";
 import {Button, Card, Form, Col} from "react-bootstrap";
 import {useNavigate} from "react-router-dom";
-import {REQUEST_ROUTE} from "../utils/consts";
+import {REQUESTS_ROUTE} from "../utils/consts";
 import {Context} from "../index";
 import {observer} from "mobx-react-lite";
 
@@ -33,7 +33,7 @@ const Login = observer( () => {
             //     auth.setUser(data.data.name)
             // })
             auth.setIsAuth(true)
-            navigate(REQUEST_ROUTE)
+            navigate(REQUESTS_ROUTE)
         } catch (e) {
             console.log(e.response.data.message)
         }

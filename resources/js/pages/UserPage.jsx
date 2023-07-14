@@ -2,9 +2,8 @@ import React, {useEffect, useState} from 'react';
 import {useParams, useNavigate} from "react-router-dom";
 import {editUser, fetchOneUser} from "../http/usersAPI";
 import {useFetching} from "../hooks/useFetching";
-import {Alert, Button, Form, InputGroup, Spinner} from "react-bootstrap";
+import {Alert, Spinner} from "react-bootstrap";
 import EditUserForm from "../components/EditUserForm";
-import {USERS_ROUTE} from "../utils/consts";
 
 const UserPage = () => {
     const {id} = useParams()

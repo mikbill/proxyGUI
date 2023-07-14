@@ -1,4 +1,4 @@
-import {LOGIN_ROUTE, NOT_FOUND_ROUTE, REQUEST_ROUTE, USERS_ROUTE} from "./utils/consts";
+import {LOGIN_ROUTE, NOT_FOUND_ROUTE, REQUESTS_ROUTE, USERS_ROUTE} from "./utils/consts";
 
 import Login from "./pages/Login";
 import NotFound from "./pages/NotFound";
@@ -8,7 +8,7 @@ import UserPage from "./pages/UserPage";
 
 export const authRoutes = [
     {
-        path: REQUEST_ROUTE,
+        path: REQUESTS_ROUTE,
         Component: Request
     },
     {
