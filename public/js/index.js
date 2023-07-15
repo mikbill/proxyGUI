@@ -7074,7 +7074,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 
 
-
 /**
  * Create a responsive hook we a set of breakpoint names and widths.
  * You can use any valid css units as well as a numbers (for pixels).
@@ -7098,36 +7097,30 @@ __webpack_require__.r(__webpack_exports__);
  * @param breakpointValues A object hash of names to breakpoint dimensions
  */
 function createBreakpointHook(breakpointValues) {
-  var names = Object.keys(breakpointValues);
-
+  const names = Object.keys(breakpointValues);
   function and(query, next) {
     if (query === next) {
       return next;
     }
-
-    return query ? query + " and " + next : next;
+    return query ? `${query} and ${next}` : next;
   }
-
   function getNext(breakpoint) {
     return names[Math.min(names.indexOf(breakpoint) + 1, names.length - 1)];
   }
-
   function getMaxQuery(breakpoint) {
-    var next = getNext(breakpoint);
-    var value = breakpointValues[next];
-    if (typeof value === 'number') value = value - 0.2 + "px";else value = "calc(" + value + " - 0.2px)";
-    return "(max-width: " + value + ")";
+    const next = getNext(breakpoint);
+    let value = breakpointValues[next];
+    if (typeof value === 'number') value = `${value - 0.2}px`;else value = `calc(${value} - 0.2px)`;
+    return `(max-width: ${value})`;
   }
-
   function getMinQuery(breakpoint) {
-    var value = breakpointValues[breakpoint];
-
+    let value = breakpointValues[breakpoint];
     if (typeof value === 'number') {
-      value = value + "px";
+      value = `${value}px`;
     }
-
-    return "(min-width: " + value + ")";
+    return `(min-width: ${value})`;
   }
+
   /**
    * Match a set of breakpoints
    *
@@ -7144,43 +7137,49 @@ function createBreakpointHook(breakpointValues) {
    * @param window Optionally specify the target window to match against (useful when rendering into iframes)
    */
 
+  /**
+   * Match a single breakpoint exactly, up, or down.
+   *
+   * ```tsx
+   * const PhoneOnly = () => {
+   *   const isSmall = useBreakpoint('sm', 'down');
+   *
+   *   if (isSmall) return <div>On a Small Screen!</div>
+   *   return null;
+   * }
+   * ```
+   *
+   * @param breakpoint The breakpoint key
+   * @param direction A direction 'up' for a max, 'down' for min, true to match only the breakpoint
+   * @param window Optionally specify the target window to match against (useful when rendering into iframes)
+   */
 
   function useBreakpoint(breakpointOrMap, direction, window) {
-    var breakpointMap;
-
+    let breakpointMap;
     if (typeof breakpointOrMap === 'object') {
       breakpointMap = breakpointOrMap;
       window = direction;
       direction = true;
     } else {
-      var _breakpointMap;
-
       direction = direction || true;
-      breakpointMap = (_breakpointMap = {}, _breakpointMap[breakpointOrMap] = direction, _breakpointMap);
+      breakpointMap = {
+        [breakpointOrMap]: direction
+      };
     }
-
-    var query = (0,react__WEBPACK_IMPORTED_MODULE_1__.useMemo)(function () {
-      return Object.entries(breakpointMap).reduce(function (query, _ref) {
-        var key = _ref[0],
-            direction = _ref[1];
-
-        if (direction === 'up' || direction === true) {
-          query = and(query, getMinQuery(key));
-        }
-
-        if (direction === 'down' || direction === true) {
-          query = and(query, getMaxQuery(key));
-        }
-
-        return query;
-      }, '');
-    }, [JSON.stringify(breakpointMap)]);
+    let query = (0,react__WEBPACK_IMPORTED_MODULE_1__.useMemo)(() => Object.entries(breakpointMap).reduce((query, [key, direction]) => {
+      if (direction === 'up' || direction === true) {
+        query = and(query, getMinQuery(key));
+      }
+      if (direction === 'down' || direction === true) {
+        query = and(query, getMaxQuery(key));
+      }
+      return query;
+    }, ''), [JSON.stringify(breakpointMap)]);
     return (0,_useMediaQuery__WEBPACK_IMPORTED_MODULE_0__["default"])(query, window);
   }
-
   return useBreakpoint;
 }
-var useBreakpoint = createBreakpointHook({
+const useBreakpoint = createBreakpointHook({
   xs: 0,
   sm: 576,
   md: 768,
@@ -7204,6 +7203,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => (/* binding */ useCallbackRef)
 /* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+
 
 /**
  * A convenience hook around `useState` designed to be paired with
@@ -7229,7 +7229,6 @@ __webpack_require__.r(__webpack_exports__);
  *
  * @category refs
  */
-
 function useCallbackRef() {
   return (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(null);
 }
@@ -7249,6 +7248,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 
+
 /**
  * Creates a `Ref` whose value is updated in an effect, ensuring the most recent
  * value is the one rendered with. Generally only required for Concurrent mode usage
@@ -7258,15 +7258,13 @@ __webpack_require__.r(__webpack_exports__);
  *
  * @param value The `Ref` value
  */
-
 function useCommittedRef(value) {
-  var ref = (0,react__WEBPACK_IMPORTED_MODULE_0__.useRef)(value);
-  (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
+  const ref = (0,react__WEBPACK_IMPORTED_MODULE_0__.useRef)(value);
+  (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(() => {
     ref.current = value;
   }, [value]);
   return ref;
 }
-
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (useCommittedRef);
 
 /***/ }),
@@ -7287,9 +7285,9 @@ __webpack_require__.r(__webpack_exports__);
 
 
 function useEventCallback(fn) {
-  var ref = (0,_useCommittedRef__WEBPACK_IMPORTED_MODULE_1__["default"])(fn);
-  return (0,react__WEBPACK_IMPORTED_MODULE_0__.useCallback)(function () {
-    return ref.current && ref.current.apply(ref, arguments);
+  const ref = (0,_useCommittedRef__WEBPACK_IMPORTED_MODULE_1__["default"])(fn);
+  return (0,react__WEBPACK_IMPORTED_MODULE_0__.useCallback)(function (...args) {
+    return ref.current && ref.current(...args);
   }, [ref]);
 }
 
@@ -7310,7 +7308,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _useEventCallback__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./useEventCallback */ "./node_modules/@restart/hooks/esm/useEventCallback.js");
 
 
-
 /**
  * Attaches an event handler outside directly to specified DOM element
  * bypassing the react synthetic event system.
@@ -7320,18 +7317,12 @@ __webpack_require__.r(__webpack_exports__);
  * @param handler An event handler
  * @param capture Whether or not to listen during the capture event phase
  */
-function useEventListener(eventTarget, event, listener, capture) {
-  if (capture === void 0) {
-    capture = false;
-  }
-
-  var handler = (0,_useEventCallback__WEBPACK_IMPORTED_MODULE_1__["default"])(listener);
-  (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
-    var target = typeof eventTarget === 'function' ? eventTarget() : eventTarget;
+function useEventListener(eventTarget, event, listener, capture = false) {
+  const handler = (0,_useEventCallback__WEBPACK_IMPORTED_MODULE_1__["default"])(listener);
+  (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(() => {
+    const target = typeof eventTarget === 'function' ? eventTarget() : eventTarget;
     target.addEventListener(event, handler, capture);
-    return function () {
-      return target.removeEventListener(event, handler, capture);
-    };
+    return () => target.removeEventListener(event, handler, capture);
   }, [eventTarget]);
 }
 
@@ -7350,6 +7341,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 
+
 /**
  * Returns a function that triggers a component update. the hook equivalent to
  * `this.forceUpdate()` in a class component. In most cases using a state value directly
@@ -7366,15 +7358,10 @@ __webpack_require__.r(__webpack_exports__);
  * return <button type="button" onClick={updateOnClick}>Hi there</button>
  * ```
  */
-
 function useForceUpdate() {
   // The toggling state value is designed to defeat React optimizations for skipping
-  // updates when they are stricting equal to the last state value
-  var _useReducer = (0,react__WEBPACK_IMPORTED_MODULE_0__.useReducer)(function (state) {
-    return !state;
-  }, false),
-      dispatch = _useReducer[1];
-
+  // updates when they are strictly equal to the last state value
+  const [, dispatch] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useReducer)(state => !state, false);
   return dispatch;
 }
 
@@ -7395,7 +7382,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 
 
-
 /**
  * Attaches an event handler outside directly to the `document`,
  * bypassing the react synthetic event system.
@@ -7410,14 +7396,8 @@ __webpack_require__.r(__webpack_exports__);
  * @param handler An event handler
  * @param capture Whether or not to listen during the capture event phase
  */
-function useGlobalListener(event, handler, capture) {
-  if (capture === void 0) {
-    capture = false;
-  }
-
-  var documentTarget = (0,react__WEBPACK_IMPORTED_MODULE_1__.useCallback)(function () {
-    return document;
-  }, []);
+function useGlobalListener(event, handler, capture = false) {
+  const documentTarget = (0,react__WEBPACK_IMPORTED_MODULE_1__.useCallback)(() => document, []);
   return (0,_useEventListener__WEBPACK_IMPORTED_MODULE_0__["default"])(documentTarget, event, handler, capture);
 }
 
@@ -7435,7 +7415,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => (/* binding */ useImage)
 /* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-
 
 /**
  * Fetch and load an image for programatic use such as in a `<canvas>` element.
@@ -7463,50 +7442,42 @@ __webpack_require__.r(__webpack_exports__);
  * ```
  */
 function useImage(imageOrUrl, crossOrigin) {
-  var _useState = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)({
+  const [state, setState] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)({
     image: null,
     error: null
-  }),
-      state = _useState[0],
-      setState = _useState[1];
-
-  (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
+  });
+  (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(() => {
     if (!imageOrUrl) return undefined;
-    var image;
-
+    let image;
     if (typeof imageOrUrl === 'string') {
       image = new Image();
       if (crossOrigin) image.crossOrigin = crossOrigin;
       image.src = imageOrUrl;
     } else {
       image = imageOrUrl;
-
       if (image.complete && image.naturalHeight > 0) {
         setState({
-          image: image,
+          image,
           error: null
         });
         return;
       }
     }
-
     function onLoad() {
       setState({
-        image: image,
+        image,
         error: null
       });
     }
-
     function onError(error) {
       setState({
-        image: image,
-        error: error
+        image,
+        error
       });
     }
-
     image.addEventListener('load', onLoad);
     image.addEventListener('error', onError);
-    return function () {
+    return () => {
       image.removeEventListener('load', onLoad);
       image.removeEventListener('error', onError);
     };
@@ -7531,6 +7502,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _useCommittedRef__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./useCommittedRef */ "./node_modules/@restart/hooks/esm/useCommittedRef.js");
 
 
+
 /**
  * Creates a `setInterval` that is properly cleaned up when a component unmounted
  *
@@ -7547,45 +7519,75 @@ __webpack_require__.r(__webpack_exports__);
  * @param ms The milliseconds duration of the interval
  */
 
-function useInterval(fn, ms, paused, runImmediately) {
-  if (paused === void 0) {
-    paused = false;
-  }
+/**
+ * Creates a pausable `setInterval` that is properly cleaned up when a component unmounted
+ *
+ * ```tsx
+ *  const [paused, setPaused] = useState(false)
+ *  const [timer, setTimer] = useState(0)
+ *
+ *  useInterval(() => setTimer(i => i + 1), 1000, paused)
+ *
+ *  return (
+ *    <span>
+ *      {timer} seconds past
+ *
+ *      <button onClick={() => setPaused(p => !p)}>{paused ? 'Play' : 'Pause' }</button>
+ *    </span>
+ * )
+ * ```
+ *
+ * @param fn an function run on each interval
+ * @param ms The milliseconds duration of the interval
+ * @param paused Whether or not the interval is currently running
+ */
 
-  if (runImmediately === void 0) {
-    runImmediately = false;
-  }
+/**
+ * Creates a pausable `setInterval` that _fires_ immediately and is
+ * properly cleaned up when a component unmounted
+ *
+ * ```tsx
+ *  const [timer, setTimer] = useState(-1)
+ *  useInterval(() => setTimer(i => i + 1), 1000, false, true)
+ *
+ *  // will update to 0 on the first effect
+ *  return <span>{timer} seconds past</span>
+ * ```
+ *
+ * @param fn an function run on each interval
+ * @param ms The milliseconds duration of the interval
+ * @param paused Whether or not the interval is currently running
+ * @param runImmediately Whether to run the function immediately on mount or unpause
+ * rather than waiting for the first interval to elapse
+ *
 
-  var handle;
-  var fnRef = (0,_useCommittedRef__WEBPACK_IMPORTED_MODULE_1__["default"])(fn); // this ref is necessary b/c useEffect will sometimes miss a paused toggle
+ */
+
+function useInterval(fn, ms, paused = false, runImmediately = false) {
+  let handle;
+  const fnRef = (0,_useCommittedRef__WEBPACK_IMPORTED_MODULE_1__["default"])(fn);
+  // this ref is necessary b/c useEffect will sometimes miss a paused toggle
   // orphaning a setTimeout chain in the aether, so relying on it's refresh logic is not reliable.
-
-  var pausedRef = (0,_useCommittedRef__WEBPACK_IMPORTED_MODULE_1__["default"])(paused);
-
-  var tick = function tick() {
+  const pausedRef = (0,_useCommittedRef__WEBPACK_IMPORTED_MODULE_1__["default"])(paused);
+  const tick = () => {
     if (pausedRef.current) return;
     fnRef.current();
     schedule(); // eslint-disable-line no-use-before-define
   };
 
-  var schedule = function schedule() {
+  const schedule = () => {
     clearTimeout(handle);
     handle = setTimeout(tick, ms);
   };
-
-  (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
+  (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(() => {
     if (runImmediately) {
       tick();
     } else {
       schedule();
     }
-
-    return function () {
-      return clearTimeout(handle);
-    };
+    return () => clearTimeout(handle);
   }, [paused, runImmediately]);
 }
-
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (useInterval);
 
 /***/ }),
@@ -7603,10 +7605,13 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 
-var isReactNative = typeof __webpack_require__.g !== 'undefined' && // @ts-ignore
-__webpack_require__.g.navigator && // @ts-ignore
+const isReactNative = typeof __webpack_require__.g !== 'undefined' &&
+// @ts-ignore
+__webpack_require__.g.navigator &&
+// @ts-ignore
 __webpack_require__.g.navigator.product === 'ReactNative';
-var isDOM = typeof document !== 'undefined';
+const isDOM = typeof document !== 'undefined';
+
 /**
  * Is `useLayoutEffect` in a DOM or React Native environment, otherwise resolves to useEffect
  * Only useful to avoid the console warning.
@@ -7615,7 +7620,6 @@ var isDOM = typeof document !== 'undefined';
  *
  * @category effects
  */
-
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (isDOM || isReactNative ? react__WEBPACK_IMPORTED_MODULE_0__.useLayoutEffect : react__WEBPACK_IMPORTED_MODULE_0__.useEffect);
 
 /***/ }),
@@ -7635,20 +7639,17 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 
 
-var matchersByWindow = new WeakMap();
-
-var getMatcher = function getMatcher(query, targetWindow) {
+const matchersByWindow = new WeakMap();
+const getMatcher = (query, targetWindow) => {
   if (!query || !targetWindow) return undefined;
-  var matchers = matchersByWindow.get(targetWindow) || new Map();
+  const matchers = matchersByWindow.get(targetWindow) || new Map();
   matchersByWindow.set(targetWindow, matchers);
-  var mql = matchers.get(query);
-
+  let mql = matchers.get(query);
   if (!mql) {
     mql = targetWindow.matchMedia(query);
     mql.refCount = 0;
     matchers.set(mql.media, mql);
   }
-
   return mql;
 };
 /**
@@ -7670,45 +7671,27 @@ var getMatcher = function getMatcher(query, targetWindow) {
  * @param query A media query
  * @param targetWindow The window to match against, uses the globally available one as a default.
  */
-
-
-function useMediaQuery(query, targetWindow) {
-  if (targetWindow === void 0) {
-    targetWindow = typeof window === 'undefined' ? undefined : window;
-  }
-
-  var mql = getMatcher(query, targetWindow);
-
-  var _useState = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)(function () {
-    return mql ? mql.matches : false;
-  }),
-      matches = _useState[0],
-      setMatches = _useState[1];
-
-  (0,_useIsomorphicEffect__WEBPACK_IMPORTED_MODULE_0__["default"])(function () {
-    var mql = getMatcher(query, targetWindow);
-
+function useMediaQuery(query, targetWindow = typeof window === 'undefined' ? undefined : window) {
+  const mql = getMatcher(query, targetWindow);
+  const [matches, setMatches] = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)(() => mql ? mql.matches : false);
+  (0,_useIsomorphicEffect__WEBPACK_IMPORTED_MODULE_0__["default"])(() => {
+    let mql = getMatcher(query, targetWindow);
     if (!mql) {
       return setMatches(false);
     }
-
-    var matchers = matchersByWindow.get(targetWindow);
-
-    var handleChange = function handleChange() {
+    let matchers = matchersByWindow.get(targetWindow);
+    const handleChange = () => {
       setMatches(mql.matches);
     };
-
     mql.refCount++;
     mql.addListener(handleChange);
     handleChange();
-    return function () {
+    return () => {
       mql.removeListener(handleChange);
       mql.refCount--;
-
       if (mql.refCount <= 0) {
         matchers == null ? void 0 : matchers.delete(mql.media);
       }
-
       mql = undefined;
     };
   }, [query]);
@@ -7729,9 +7712,11 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => (/* binding */ useMergeState)
 /* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-function _extends() { _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends.apply(this, arguments); }
 
 
+/**
+ * Updates state, partial updates are merged into existing state values
+ */
 
 /**
  * Mimics a React class component's state model, of having a single unified
@@ -7749,22 +7734,16 @@ function _extends() { _extends = Object.assign || function (target) { for (var i
  * @param initialState The initial state object
  */
 function useMergeState(initialState) {
-  var _useState = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(initialState),
-      state = _useState[0],
-      setState = _useState[1];
-
-  var updater = (0,react__WEBPACK_IMPORTED_MODULE_0__.useCallback)(function (update) {
+  const [state, setState] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(initialState);
+  const updater = (0,react__WEBPACK_IMPORTED_MODULE_0__.useCallback)(update => {
     if (update === null) return;
-
     if (typeof update === 'function') {
-      setState(function (state) {
-        var nextState = update(state);
-        return nextState == null ? state : _extends({}, state, nextState);
+      setState(state => {
+        const nextState = update(state);
+        return nextState == null ? state : Object.assign({}, state, nextState);
       });
     } else {
-      setState(function (state) {
-        return _extends({}, state, update);
-      });
+      setState(state => Object.assign({}, state, update));
     }
   }, [setState]);
   return [state, updater];
@@ -7786,11 +7765,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _useMergeState__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./useMergeState */ "./node_modules/@restart/hooks/esm/useMergeState.js");
 
 function useMergeStateFromProps(props, gDSFP, initialState) {
-  var _useMergeState = (0,_useMergeState__WEBPACK_IMPORTED_MODULE_0__["default"])(initialState),
-      state = _useMergeState[0],
-      setState = _useMergeState[1];
-
-  var nextState = gDSFP(props, state);
+  const [state, setState] = (0,_useMergeState__WEBPACK_IMPORTED_MODULE_0__["default"])(initialState);
+  const nextState = gDSFP(props, state);
   if (nextState !== null) setState(nextState);
   return [state, setState];
 }
@@ -7811,21 +7787,18 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 
-
-var toFnRef = function toFnRef(ref) {
-  return !ref || typeof ref === 'function' ? ref : function (value) {
-    ref.current = value;
-  };
+const toFnRef = ref => !ref || typeof ref === 'function' ? ref : value => {
+  ref.current = value;
 };
-
 function mergeRefs(refA, refB) {
-  var a = toFnRef(refA);
-  var b = toFnRef(refB);
-  return function (value) {
+  const a = toFnRef(refA);
+  const b = toFnRef(refB);
+  return value => {
     if (a) a(value);
     if (b) b(value);
   };
 }
+
 /**
  * Create and returns a single callback ref composed from two other Refs.
  *
@@ -7842,13 +7815,9 @@ function mergeRefs(refA, refB) {
  * @param refB A Callback or mutable Ref
  * @category refs
  */
-
 function useMergedRefs(refA, refB) {
-  return (0,react__WEBPACK_IMPORTED_MODULE_0__.useMemo)(function () {
-    return mergeRefs(refA, refB);
-  }, [refA, refB]);
+  return (0,react__WEBPACK_IMPORTED_MODULE_0__.useMemo)(() => mergeRefs(refA, refB), [refA, refB]);
 }
-
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (useMergedRefs);
 
 /***/ }),
@@ -7865,6 +7834,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => (/* binding */ useMounted)
 /* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+
 
 /**
  * Track whether a component is current mounted. Generally less preferable than
@@ -7886,15 +7856,12 @@ __webpack_require__.r(__webpack_exports__);
  * })
  * ```
  */
-
 function useMounted() {
-  var mounted = (0,react__WEBPACK_IMPORTED_MODULE_0__.useRef)(true);
-  var isMounted = (0,react__WEBPACK_IMPORTED_MODULE_0__.useRef)(function () {
-    return mounted.current;
-  });
-  (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
+  const mounted = (0,react__WEBPACK_IMPORTED_MODULE_0__.useRef)(true);
+  const isMounted = (0,react__WEBPACK_IMPORTED_MODULE_0__.useRef)(() => mounted.current);
+  (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(() => {
     mounted.current = true;
-    return function () {
+    return () => {
       mounted.current = false;
     };
   }, []);
@@ -7916,6 +7883,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 
+
 /**
  * Store the last of some value. Tracked via a `Ref` only updating it
  * after the component renders.
@@ -7933,10 +7901,9 @@ __webpack_require__.r(__webpack_exports__);
  *
  * @param value the value to track
  */
-
 function usePrevious(value) {
-  var ref = (0,react__WEBPACK_IMPORTED_MODULE_0__.useRef)(null);
-  (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
+  const ref = (0,react__WEBPACK_IMPORTED_MODULE_0__.useRef)(null);
+  (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(() => {
     ref.current = value;
   });
   return ref.current;
@@ -7959,41 +7926,29 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _useCommittedRef__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./useCommittedRef */ "./node_modules/@restart/hooks/esm/useCommittedRef.js");
 
 
-
-function useRafInterval(fn, ms, paused) {
-  if (paused === void 0) {
-    paused = false;
-  }
-
-  var handle;
-  var start = new Date().getTime();
-  var fnRef = (0,_useCommittedRef__WEBPACK_IMPORTED_MODULE_1__["default"])(fn); // this ref is necessary b/c useEffect will sometimes miss a paused toggle
+function useRafInterval(fn, ms, paused = false) {
+  let handle;
+  let start = new Date().getTime();
+  const fnRef = (0,_useCommittedRef__WEBPACK_IMPORTED_MODULE_1__["default"])(fn);
+  // this ref is necessary b/c useEffect will sometimes miss a paused toggle
   // orphaning a setTimeout chain in the aether, so relying on it's refresh logic is not reliable.
-
-  var pausedRef = (0,_useCommittedRef__WEBPACK_IMPORTED_MODULE_1__["default"])(paused);
-
+  const pausedRef = (0,_useCommittedRef__WEBPACK_IMPORTED_MODULE_1__["default"])(paused);
   function loop() {
-    var current = new Date().getTime();
-    var delta = current - start;
+    const current = new Date().getTime();
+    const delta = current - start;
     if (pausedRef.current) return;
-
     if (delta >= ms && fnRef.current) {
       fnRef.current();
       start = new Date().getTime();
     }
-
     cancelAnimationFrame(handle);
     handle = requestAnimationFrame(loop);
   }
-
-  (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
+  (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(() => {
     handle = requestAnimationFrame(loop);
-    return function () {
-      return cancelAnimationFrame(handle);
-    };
+    return () => cancelAnimationFrame(handle);
   }, []);
 }
-
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (useRafInterval);
 
 /***/ }),
@@ -8013,18 +7968,18 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _useIsomorphicEffect__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./useIsomorphicEffect */ "./node_modules/@restart/hooks/esm/useIsomorphicEffect.js");
 
 
-var targetMap = new WeakMap();
-var resizeObserver;
-
+const targetMap = new WeakMap();
+let resizeObserver;
 function getResizeObserver() {
   // eslint-disable-next-line no-return-assign
-  return resizeObserver = resizeObserver || new window.ResizeObserver(function (entries) {
-    entries.forEach(function (entry) {
-      var handler = targetMap.get(entry.target);
+  return resizeObserver = resizeObserver || new window.ResizeObserver(entries => {
+    entries.forEach(entry => {
+      const handler = targetMap.get(entry.target);
       if (handler) handler(entry.contentRect);
     });
   });
 }
+
 /**
  * Efficiently observe size changes on an element. Depends on the `ResizeObserver` api,
  * and polyfills are needed in older browsers.
@@ -8043,21 +7998,16 @@ function getResizeObserver() {
  *
  * @param element The DOM element to observe
  */
-
-
 function useResizeObserver(element) {
-  var _useState = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(null),
-      rect = _useState[0],
-      setRect = _useState[1];
-
-  (0,_useIsomorphicEffect__WEBPACK_IMPORTED_MODULE_1__["default"])(function () {
+  const [rect, setRect] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(null);
+  (0,_useIsomorphicEffect__WEBPACK_IMPORTED_MODULE_1__["default"])(() => {
     if (!element) return;
     getResizeObserver().observe(element);
     setRect(element.getBoundingClientRect());
-    targetMap.set(element, function (rect) {
+    targetMap.set(element, rect => {
       setRect(rect);
     });
-    return function () {
+    return () => {
       targetMap.delete(element);
     };
   }, [element]);
@@ -8079,15 +8029,15 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 
+
 /**
  * Returns a ref that is immediately updated with the new value
  *
  * @param value The Ref value
  * @category refs
  */
-
 function useUpdatedRef(value) {
-  var valueRef = (0,react__WEBPACK_IMPORTED_MODULE_0__.useRef)(value);
+  const valueRef = (0,react__WEBPACK_IMPORTED_MODULE_0__.useRef)(value);
   valueRef.current = value;
   return valueRef;
 }
@@ -8109,20 +8059,16 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 
 
+
 /**
  * Attach a callback that fires when a component unmounts
  *
  * @param fn Handler to run when the component unmounts
  * @category effects
  */
-
 function useWillUnmount(fn) {
-  var onUnmount = (0,_useUpdatedRef__WEBPACK_IMPORTED_MODULE_0__["default"])(fn);
-  (0,react__WEBPACK_IMPORTED_MODULE_1__.useEffect)(function () {
-    return function () {
-      return onUnmount.current();
-    };
-  }, []);
+  const onUnmount = (0,_useUpdatedRef__WEBPACK_IMPORTED_MODULE_0__["default"])(fn);
+  (0,react__WEBPACK_IMPORTED_MODULE_1__.useEffect)(() => () => onUnmount.current(), []);
 }
 
 /***/ }),

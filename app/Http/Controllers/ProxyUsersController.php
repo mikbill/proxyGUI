@@ -57,12 +57,12 @@ class ProxyUsersController extends Controller
      *      "testing_url": "https://devel.local/callback/testing"
      *  }
      * }
-     * @response status=404 scenario="User not found" {"error": 1, "message": "User not found"}
+     * @response status=404 scenario="Прокси юзер не найден" {"error": 1, "message": "Пользователь не найден"}
      */
     public function select($id) {
         $proxy_user = ProxyClient::find($id);
         if(empty($proxy_user)) {
-            return response()->json(['error' => 1, "message" => "User not found"])->setStatusCode(404);
+            return response()->json(['error' => 1, "message" => "Пользователь не найден"])->setStatusCode(404);
         }
 
         return new ProxyUsersResource($proxy_user);
@@ -85,7 +85,7 @@ class ProxyUsersController extends Controller
      *      "testing_url": ""
      *  }
      * }
-     * @response status=403 scenario="User already exists" {"error": 1, "message": "User with this ID exists"}
+     * @response status=403 scenario="Такой id уже существует" {"error": 1, "message": "Пользователь с таким ID уже существует"}
      *
      * @param CreateProxyUserRequest $request
      * @return ProxyUsersResource|jsonResponse
@@ -95,7 +95,7 @@ class ProxyUsersController extends Controller
 
         $proxy_user = ProxyClient::find($data["id"]);
         if( !empty($proxy_user) ) {
-            return response()->json(['error' => 1, "message" => "User with this ID exists"])->setStatusCode(403);
+            return response()->json(['error' => 1, "message" => "Пользователь с таким ID уже существует"])->setStatusCode(403);
         }
 
         $proxy_user = ProxyClient::create($data);
@@ -119,7 +119,8 @@ class ProxyUsersController extends Controller
      *      "testing_url": ""
      *  }
      * }
-     * @response status=404 scenario="User not found" {"error": 1, "message": "User not found"}
+     * @response status=404 scenario="Прокси юзер не найден" {"error": 1, "message": "Пользователь не найден"}
+     * @response status=403 scenario="Такой id уже существует" {"error": 2, "Пользователь с таким ID уже существует"}
      *
      * @param int $id
      * @param CreateProxyUserRequest $request
@@ -128,9 +129,17 @@ class ProxyUsersController extends Controller
     public function update($id, UpdateProxyUserRequest $request) {
         $data = $request->validated();
 
+        if( isset($data["id"]) && $data["id"] != $id ) {
+            // проверка что запрашиваемый ID свободный
+            $proxy_user = ProxyClient::find($data["id"]);
+            if( !empty($proxy_user) ) {
+                return response()->json(['error' => 2, "message" => "Пользователь с таким ID уже существует"])->setStatusCode(403);
+            }
+        }
+
         $proxy_user = ProxyClient::find($id);
         if( empty($proxy_user) ) {
-            return response()->json(['error' => 1, "message" => "User not found"])->setStatusCode(404);
+            return response()->json(['error' => 1, "message" => "Пользователь не найден"])->setStatusCode(404);
         }
 
         $proxy_user->fill($data)->save();

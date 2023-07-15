@@ -88,13 +88,13 @@ class ProxyRequestsController extends Controller
             "transactionId": "f8b8d63a-9a72-31ff-9e3a-7901c9f3ad84"
         }
      * }
-     * @response status=404 scenario="Proxy request not found" {"error": 1, "message": "Proxy request not found"}
+     * @response status=404 scenario="Прокси запрос не найден" {"error": 1, "message": "Прокси запрос не найден"}
      * @return ProxyRequestResource|JsonResponse
      */
     public function select($id) {
         $proxy_request = ProxyRequest::find($id);
         if(empty($proxy_request)) {
-            return response()->json(['error' => 1, "message" => "Proxy request not found"])->setStatusCode(404);
+            return response()->json(['error' => 1, "message" => "Прокси запрос не найден"])->setStatusCode(404);
         }
 
         return new ProxyRequestResource($proxy_request);

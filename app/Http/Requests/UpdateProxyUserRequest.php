@@ -28,9 +28,10 @@ class UpdateProxyUserRequest extends FormRequest
     public function rules()
     {
         return [
-            'name' => ['string', 'nullable'],
-            'update_date' => ['date', 'nullable'],
-            'production_url' => ['string', 'nullable'],
+            'id' => ['int', 'nullable'],
+            'name' => ['string', 'required'],
+            'update_date' => ['date', 'required'],
+            'production_url' => ['string', 'required'],
             'testing_url' => ['string', 'nullable'],
         ];
     }
