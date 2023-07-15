@@ -123,7 +123,7 @@
                             <li><a href="http://github.com/knuckleswtf/scribe">Documentation powered by Scribe ✍</a></li>
                     </ul>
         <ul class="toc-footer" id="last-updated">
-        <li>Last updated: June 26 2023</li>
+        <li>Last updated: July 15 2023</li>
     </ul>
 </div>
 
@@ -165,7 +165,7 @@
     --header "Accept: application/json" \
     --data "{
     \"name\": \"admin\",
-    \"password\": \"culpa\"
+    \"password\": \"hic\"
 }"
 </code></pre></div>
 
@@ -182,7 +182,7 @@ const headers = {
 
 let body = {
     "name": "admin",
-    "password": "culpa"
+    "password": "hic"
 };
 
 fetch(url, {
@@ -255,7 +255,7 @@ fetch(url, {
                 <input type="text"
                name="password"
                data-endpoint="POSTapi-v1-auth"
-               value="culpa"
+               value="hic"
                data-component="body" hidden>
     <br>
 <p>пароль</p>
@@ -476,7 +476,7 @@ fetch(url, {
                 <input type="number"
                name="clientID"
                data-endpoint="GETapi-v1-proxy-requests"
-               value="2"
+               value="14"
                data-component="url" hidden>
     <br>
 <p>запросы только от этого пользователя прокси</p>
@@ -486,7 +486,7 @@ fetch(url, {
                 <input type="number"
                name="msisdn"
                data-endpoint="GETapi-v1-proxy-requests"
-               value="18"
+               value="4"
                data-component="url" hidden>
     <br>
 <p>запросы только от этого msisdn</p>
@@ -507,7 +507,7 @@ fetch(url, {
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request GET \
-    --get "https://proxy.nekkoy.pp.ua/api/v1/proxy/requests/12" \
+    --get "https://proxy.nekkoy.pp.ua/api/v1/proxy/requests/6" \
     --header "Authorization: Bearer {YOUR_AUTH_KEY}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre></div>
@@ -515,7 +515,7 @@ fetch(url, {
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "https://proxy.nekkoy.pp.ua/api/v1/proxy/requests/12"
+    "https://proxy.nekkoy.pp.ua/api/v1/proxy/requests/6"
 );
 
 const headers = {
@@ -554,13 +554,13 @@ fetch(url, {
 }</code>
  </pre>
             <blockquote>
-            <p>Example response (404, Proxy request not found):</p>
+            <p>Example response (404, Прокси запрос не найден):</p>
         </blockquote>
                 <pre>
 
 <code class="language-json">{
     &quot;error&quot;: 1,
-    &quot;message&quot;: &quot;Proxy request not found&quot;
+    &quot;message&quot;: &quot;Прокси запрос не найден&quot;
 }</code>
  </pre>
     </span>
@@ -603,7 +603,7 @@ fetch(url, {
                 <input type="number"
                name="id"
                data-endpoint="GETapi-v1-proxy-requests--id-"
-               value="12"
+               value="6"
                data-component="url" hidden>
     <br>
 <p>ИД прокси запроса</p>
@@ -727,7 +727,7 @@ fetch(url, {
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request GET \
-    --get "https://proxy.nekkoy.pp.ua/api/v1/proxy/users/15" \
+    --get "https://proxy.nekkoy.pp.ua/api/v1/proxy/users/13" \
     --header "Authorization: Bearer {YOUR_AUTH_KEY}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre></div>
@@ -735,7 +735,7 @@ fetch(url, {
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "https://proxy.nekkoy.pp.ua/api/v1/proxy/users/15"
+    "https://proxy.nekkoy.pp.ua/api/v1/proxy/users/13"
 );
 
 const headers = {
@@ -768,13 +768,13 @@ fetch(url, {
 }</code>
  </pre>
             <blockquote>
-            <p>Example response (404, User not found):</p>
+            <p>Example response (404, Прокси юзер не найден):</p>
         </blockquote>
                 <pre>
 
 <code class="language-json">{
     &quot;error&quot;: 1,
-    &quot;message&quot;: &quot;User not found&quot;
+    &quot;message&quot;: &quot;Пользователь не найден&quot;
 }</code>
  </pre>
     </span>
@@ -817,7 +817,7 @@ fetch(url, {
                 <input type="number"
                name="id"
                data-endpoint="GETapi-v1-proxy-users--id-"
-               value="15"
+               value="13"
                data-component="url" hidden>
     <br>
 <p>ИД пользователя прокси</p>
@@ -843,10 +843,10 @@ fetch(url, {
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
     --data "{
-    \"name\": \"ut\",
-    \"update_date\": \"enim\",
-    \"production_url\": \"fugit\",
-    \"testing_url\": \"libero\"
+    \"name\": \"ullam\",
+    \"update_date\": \"in\",
+    \"production_url\": \"eum\",
+    \"testing_url\": \"odit\"
 }"
 </code></pre></div>
 
@@ -863,10 +863,10 @@ const headers = {
 };
 
 let body = {
-    "name": "ut",
-    "update_date": "enim",
-    "production_url": "fugit",
-    "testing_url": "libero"
+    "name": "ullam",
+    "update_date": "in",
+    "production_url": "eum",
+    "testing_url": "odit"
 };
 
 fetch(url, {
@@ -894,14 +894,21 @@ fetch(url, {
 }</code>
  </pre>
             <blockquote>
-            <p>Example response (404, User not found):</p>
+            <p>Example response (404, Прокси юзер не найден):</p>
         </blockquote>
                 <pre>
 
 <code class="language-json">{
     &quot;error&quot;: 1,
-    &quot;message&quot;: &quot;User not found&quot;
+    &quot;message&quot;: &quot;Пользователь не найден&quot;
 }</code>
+ </pre>
+            <blockquote>
+            <p>Example response (403, Такой id уже существует):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json">{&quot;error&quot;: 2, &quot;Пользователь с таким ID уже существует&quot;}</code>
  </pre>
     </span>
 <span id="execution-results-PATCHapi-v1-proxy-users--id-" hidden>
@@ -954,7 +961,7 @@ fetch(url, {
                 <input type="text"
                name="name"
                data-endpoint="PATCHapi-v1-proxy-users--id-"
-               value="ut"
+               value="ullam"
                data-component="body" hidden>
     <br>
 <p>Имя клиента</p>
@@ -964,7 +971,7 @@ fetch(url, {
                 <input type="text"
                name="update_date"
                data-endpoint="PATCHapi-v1-proxy-users--id-"
-               value="enim"
+               value="in"
                data-component="body" hidden>
     <br>
 <p>дата обновлений из ACR системы</p>
@@ -974,7 +981,7 @@ fetch(url, {
                 <input type="text"
                name="production_url"
                data-endpoint="PATCHapi-v1-proxy-users--id-"
-               value="fugit"
+               value="eum"
                data-component="body" hidden>
     <br>
 <p>URL callback для production</p>
@@ -984,7 +991,7 @@ fetch(url, {
                 <input type="text"
                name="testing_url"
                data-endpoint="PATCHapi-v1-proxy-users--id-"
-               value="libero"
+               value="odit"
                data-component="body" hidden>
     <br>
 <p>URL callback для тестирования</p>
@@ -1010,11 +1017,11 @@ fetch(url, {
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
     --data "{
-    \"id\": 7,
-    \"name\": \"veritatis\",
+    \"id\": 14,
+    \"name\": \"delectus\",
     \"update_date\": \"2023-12-31\",
-    \"production_url\": \"ut\",
-    \"testing_url\": \"quo\"
+    \"production_url\": \"laborum\",
+    \"testing_url\": \"necessitatibus\"
 }"
 </code></pre></div>
 
@@ -1031,11 +1038,11 @@ const headers = {
 };
 
 let body = {
-    "id": 7,
-    "name": "veritatis",
+    "id": 14,
+    "name": "delectus",
     "update_date": "2023-12-31",
-    "production_url": "ut",
-    "testing_url": "quo"
+    "production_url": "laborum",
+    "testing_url": "necessitatibus"
 };
 
 fetch(url, {
@@ -1063,13 +1070,13 @@ fetch(url, {
 }</code>
  </pre>
             <blockquote>
-            <p>Example response (403, User already exists):</p>
+            <p>Example response (403, Такой id уже существует):</p>
         </blockquote>
                 <pre>
 
 <code class="language-json">{
     &quot;error&quot;: 1,
-    &quot;message&quot;: &quot;User with this ID exists&quot;
+    &quot;message&quot;: &quot;Пользователь с таким ID уже существует&quot;
 }</code>
  </pre>
     </span>
@@ -1112,7 +1119,7 @@ fetch(url, {
                 <input type="number"
                name="id"
                data-endpoint="POSTapi-v1-proxy-users"
-               value="7"
+               value="14"
                data-component="body" hidden>
     <br>
 <p>ИД прокси пользователя из ACR системы</p>
@@ -1122,7 +1129,7 @@ fetch(url, {
                 <input type="text"
                name="name"
                data-endpoint="POSTapi-v1-proxy-users"
-               value="veritatis"
+               value="delectus"
                data-component="body" hidden>
     <br>
 <p>Имя клиента</p>
@@ -1142,7 +1149,7 @@ fetch(url, {
                 <input type="text"
                name="production_url"
                data-endpoint="POSTapi-v1-proxy-users"
-               value="ut"
+               value="laborum"
                data-component="body" hidden>
     <br>
 <p>URL callback для production</p>
@@ -1152,7 +1159,7 @@ fetch(url, {
                 <input type="text"
                name="testing_url"
                data-endpoint="POSTapi-v1-proxy-users"
-               value="quo"
+               value="necessitatibus"
                data-component="body" hidden>
     <br>
 <p>URL callback для тестирования</p>
