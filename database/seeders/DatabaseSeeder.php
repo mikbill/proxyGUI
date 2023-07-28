@@ -5,6 +5,7 @@ namespace Database\Seeders;
 use Illuminate\Database\Seeder;
 use App\Models\ProxyClient;
 use App\Models\ProxyRequest;
+use App\Models\User;
 
 class DatabaseSeeder extends Seeder
 {
@@ -15,7 +16,7 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        // \App\Models\User::factory(10)->create();
+        //User::factory(10)->create();
         ProxyClient::factory(10)->create();
         ProxyRequest::factory(100)->create();
     }
