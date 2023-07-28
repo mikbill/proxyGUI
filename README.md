@@ -1,11 +1,13 @@
-composer install
+install laravel 8 dependencies
 
-npm install
+run:
+  composer install
+  npm install
+ 
+after: php artisan serve
 
-npm run watch
-
-php artisan serve
+login: demo
+password: demo
 
 Site: http://localhost:3000
-
 Docs: http://localhost:3000/docs
